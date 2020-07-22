@@ -1,0 +1,47 @@
+{
+  "name": "october",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "3box": "1.20.3",
+    "3box-chatbox-react": "^0.2.0",
+    "3box-comments-react": "3.0.5",
+    "3box-profile-edit-react": "0.0.9",
+    "blob-util": "^2.0.2",
+    "bootstrap": "^4.5.0",
+    "image-exists": "^1.1.0",
+    "libp2p-pubsub": "^0.4.6",
+    "node-sass": "^4.14.1",
+    "profile-hover": "1.1.2",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.2.2",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
+    "react-images-upload": "^1.2.8",
+    "react-inlinesvg": "^2.0.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.2.0",
+    "react-spinners": "^0.6.1"
+  },
+  "scripts": {
+    "start": " react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
