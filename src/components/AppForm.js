@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+// const fs = require('fs')
+// import {Form} from react-bootstrap/Form
+// import {FormControl} from react-bootstrap/FormControl
+// import {FormGroup} from react-bootstrap/FormGroup
+import fleekStorage from '@fleekhq/fleek-storage-js'
 const blankState = { name: "", url: "", appImage: "", description: "" };
 export default class AppForm extends Component {
   state = blankState;
 
   handleChange = event => {
+    console.log(event.target.files[0],event.target.value)
     this.setState(Object.assign({ [event.target.name]: event.target.value }));
   };
 
@@ -40,7 +46,12 @@ export default class AppForm extends Component {
                 value={this.state.name}
                 onChange={this.handleChange}
               />
-            </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="uploadFile">Select file</label>
+                <input type="file" name="uploadFile" accept="image/*,video/*" className="form-control-file" onChange={this.handleChange}/>
+              </div>
+            
             <div className="form-group">
               <label htmlFor="url">URL:</label>
               <input
