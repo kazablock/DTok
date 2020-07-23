@@ -5,6 +5,7 @@ import Modal from "./../components/Modal";
 import {FaRegHeart} from "react-icons/fa";
 import {FaHeart} from "react-icons/fa";
 
+
 class AppCard extends Component {
   render(){
     const like=()=>{
@@ -12,6 +13,7 @@ class AppCard extends Component {
     }
     return (                    
     <>
+   
       <div className="card col-sm-4">
         <div style={{ padding: "20px" }}>
           <h5>
@@ -60,13 +62,15 @@ class AppCard extends Component {
             space={this.props.space}
             box={this.props.box}
             usersAddress={this.props.usersAddress}
-            
+            acc={this.props.acc}
           />
          </span>
          </div>
         </div>
       </div>
-      {(this.props.i + 1) % 3 == 0 && <div className="w-100 rounded-pill"></div>}
+  
+      {(this.props.i + 1) % 3 === 0 && <div className="w-100 rounded-pill"></div>}
+      
     </>)
   }
   

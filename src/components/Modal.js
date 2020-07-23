@@ -2,6 +2,8 @@ import { Modal, Button } from "react-bootstrap";
 import React, { Component } from "react";
 import CommentBox from "3box-comments-react";
 import { SPACE_NAME } from "../Constants";
+import Like from "./Like";
+import ChatBox from '3box-chatbox-react';
 export default class Example extends Component {
   state = {
     show: false,
@@ -54,6 +56,15 @@ export default class Example extends Component {
             adminEthAddr={"0x2f4cE4f714C68A3fC871d1f543FFC24b9b3c2386"}
             
           />
+           <ChatBox
+              spaceName="demochat"
+              threadName="testthread"
+              box={this.props.box}
+              ethereum={window.ethereum}
+              currentUserAddr={this.props.acc}
+              currentUser3BoxProfile={this.props.threeBoxProfile}
+              popupChat={true}
+              />
           </div>
           </Modal.Body>
           <Modal.Footer>

@@ -9,6 +9,7 @@ import { BounceLoader } from "react-spinners";
 import Home from "./pages/Home";
 import AddApp from "./pages/AddApp";
 import Profile from "./pages/Profile";
+import ChatBox from '3box-chatbox-react';
 import { SPACE_NAME } from "./Constants";
 
 const getThreeBox = async address => {
@@ -33,6 +34,9 @@ export default class App extends Component {
   async componentDidMount() {
     await this.getAddressFromMetaMask();
     if (this.state.accounts) {
+      console.log(typeof(this.state.accounts[0]))
+      const acc=this.state.accounts[0]
+      this.setState({acc})
       const threeBoxProfile = await getThreeBox(this.state.accounts[0]);
       this.setState({ threeBoxProfile });
     }
@@ -40,7 +44,9 @@ export default class App extends Component {
     const box = await Box.openBox(this.state.accounts[0], window.ethereum);
     this.setState({ box });
     const space = await this.state.box.openSpace(SPACE_NAME);
+    
     this.setState({ space });
+    
 
     const thread = await space.joinThread("application_list", {
       firstModerator: rach,
@@ -112,7 +118,19 @@ export default class App extends Component {
                 usersAddress={
                   this.state.accounts ? this.state.accounts[0] : null
                 }
+                acc={this.state.acc}
+
               />
+              
+               {/* <ChatBox
+              spaceName="demochat"
+              threadName="testthread"
+              box={this.state.box}
+              ethereum={window.ethereum}
+              currentUserAddr="0xa1465130f57bC31E517A439db0364270A3513FA0"
+              currentUser3BoxProfile={this.state.threeBoxProfile}
+              popupChat={true}
+              />  */}
             </Route>
           </Switch>
         </div>
