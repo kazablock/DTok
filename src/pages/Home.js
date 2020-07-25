@@ -14,7 +14,7 @@ class AppCard extends Component {
     return (                    
     <>
    
-      <div className="card col-sm-4">
+      <div className="card col-sm-5 m-2" sytle={{borderRadius: "25%",background:"#ffffff"}}>
         <div style={{ padding: "20px" }}>
          
           {this.props.post.message.account && (

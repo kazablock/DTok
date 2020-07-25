@@ -1,10 +1,11 @@
 
 import React, { Component } from "react";
+// import sha256 from 'crypto-js/sha256';
 
 // import ReactPlayer from 'react-player/lazy';
 
 import fleekStorage from '@fleekhq/fleek-storage-js'
-var fs = require('fs');
+
 const blankState = { name: "", url: "", appImage: "", description: "" };
 export default class AppForm extends Component {
   state = blankState;
@@ -54,7 +55,14 @@ export default class AppForm extends Component {
         apiSecret: 'sibjDT4H40hVElJdMgrW4xKL8SZ6ZECI4rX0zXoRowE=',
         key: this.props.usersAddress + "/" + this.state.selectedFileName,
         data: this.state.selectedFileData,
-      }).then((er) => this.setState({ "appImage": er.publicUrl }));
+      }).then((er) =>{
+        this.setState({ "appImage": er.publicUrl });
+        // const ha=sha256(this.state.description+this.state.appImage)
+
+
+    
+    
+    } );
       // console.log(uploadedFile)
 
     } catch (error) {

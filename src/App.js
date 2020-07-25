@@ -3,7 +3,7 @@ import "./App.css";
 import Box from "3box";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Nav from "./components/Nav";
+import Navi from "./components/Navi";
 import { BounceLoader } from "react-spinners";
 
 import Home from "./pages/Home";
@@ -77,7 +77,7 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <Navi />
           <Switch>
             <Route path="/profile">
               {this.state.space && (
@@ -113,6 +113,7 @@ export default class App extends Component {
               {!this.state.accounts && <h1>Login with metamask</h1>}
             </Route>
             <Route path="/">
+            <div style={{ background: "#f0f2f5" }}>
               <Home
                 posts={this.state.posts}
                 space={this.state.space}
@@ -124,7 +125,7 @@ export default class App extends Component {
                 acc={this.state.acc}
 
               />
-              
+              </div>
           
             </Route>
           </Switch>
