@@ -40,7 +40,7 @@ export default class App extends Component {
       const threeBoxProfile = await getThreeBox(this.state.accounts[0]);
       this.setState({ threeBoxProfile });
     }
-    const rach = "0x2f4cE4f714C68A3fC871d1f543FFC24b9b3c2386";
+    const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
     const box = await Box.openBox(this.state.accounts[0], window.ethereum);
     this.setState({ box });
     const space = await this.state.box.openSpace(SPACE_NAME);
@@ -94,9 +94,12 @@ export default class App extends Component {
                 </div>
               )}
             </Route>
-            <Route path="/add-application">
+            <Route path="/add-post">
               {this.state.accounts && (
                 <AddApp
+                  usersAddress={
+                  this.state.accounts ? this.state.accounts[0] : null
+                  }
                   accounts={this.state.accounts}
                   thread={this.state.thread}
                   box={this.state.box}
@@ -122,15 +125,7 @@ export default class App extends Component {
 
               />
               
-               {/* <ChatBox
-              spaceName="demochat"
-              threadName="testthread"
-              box={this.state.box}
-              ethereum={window.ethereum}
-              currentUserAddr="0xa1465130f57bC31E517A439db0364270A3513FA0"
-              currentUser3BoxProfile={this.state.threeBoxProfile}
-              popupChat={true}
-              />  */}
+          
             </Route>
           </Switch>
         </div>

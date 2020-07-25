@@ -1,28 +1,67 @@
+
 import React, { Component } from "react";
-// const fs = require('fs')
-// import {Form} from react-bootstrap/Form
-// import {FormControl} from react-bootstrap/FormControl
-// import {FormGroup} from react-bootstrap/FormGroup
+
+// import ReactPlayer from 'react-player/lazy';
+
 import fleekStorage from '@fleekhq/fleek-storage-js'
+var fs = require('fs');
 const blankState = { name: "", url: "", appImage: "", description: "" };
 export default class AppForm extends Component {
   state = blankState;
 
   handleChange = event => {
-    console.log(event.target.files[0],event.target.value)
+    // console.log(event.target.files[0],event.target.value)
     this.setState(Object.assign({ [event.target.name]: event.target.value }));
   };
+  test = async (event) => {
+    const files = await fleekStorage.listFiles({
+      apiKey: 'eznzFPmn1E6dYkkaernc8Q==',
+      apiSecret: 'sibjDT4H40hVElJdMgrW4xKL8SZ6ZECI4rX0zXoRowE=',
+
+    })
+    console.log(files)
+  }
+  handleChange2 = event => {
+
+    const file = event.target.files[0];
+
+    console.log(event.target.files[0], file.name)
+
+    const reader = new FileReader()
+    reader.readAsArrayBuffer(file);
+    reader.onload = () => {
+      console.log(reader.result)
+      this.setState({ "selectedFileData": reader.result })
+      this.setState({ "selectedFileName": file.name })
+
+
+
+    }
+
+  };
+
 
   async validateFormFields() {
     console.log("to do - validiate form");
   }
 
-  handleSubmit = event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     this.validateFormFields();
+    try {
+      const uploadedFile = await fleekStorage.upload({
+        apiKey: 'eznzFPmn1E6dYkkaernc8Q==',
+        apiSecret: 'sibjDT4H40hVElJdMgrW4xKL8SZ6ZECI4rX0zXoRowE=',
+        key: this.props.usersAddress + "/" + this.state.selectedFileName,
+        data: this.state.selectedFileData,
+      }).then((er) => this.setState({ "appImage": er.publicUrl }));
+      // console.log(uploadedFile)
+
+    } catch (error) {
+      console.log(error)
+    }
     this.props.savePost({
-      name: this.state.name,
-      url: this.state.url,
+
       appImage: this.state.appImage,
       description: this.state.description
     });
@@ -32,69 +71,41 @@ export default class AppForm extends Component {
 
   render() {
     return (
+
       <div style={{ maxWidth: "500px", margin: "auto" }}>
+        <button onClick={this.test} >kk</button>
         {!this.state.submitted && (
           <form onSubmit={this.handleSubmit}>
+
+
+
+
             <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                aria-describedby="appName"
-                placeholder="Enter App Name"
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
-              </div>
-              <div className="form-group">
-                <label htmlFor="uploadFile">Select file</label>
-                <input type="file" name="uploadFile" accept="image/*,video/*" className="form-control-file" onChange={this.handleChange}/>
-              </div>
-            
-            <div className="form-group">
-              <label htmlFor="url">URL:</label>
-              <input
-                type="text"
-                name="url"
-                className="form-control"
-                aria-describedby="url"
-                placeholder="Add url"
-                value={this.state.url}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="appImage">Image URL:</label>
-              <input
-                type="text"
-                name="appImage"
-                className="form-control"
-                aria-describedby="application image"
-                placeholder="Add an image"
-                value={this.state.appImage}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="description">Description:</label>
-              <input
-                type="text"
-                name="description"
+              {/* <label htmlFor="exampleFormControlTextarea1">Example textarea</label> */}
+              <textarea id="exampleFormControlTextarea1" rows="3" name="description"
                 className="form-control"
                 aria-describedby="description"
-                placeholder="Add a description"
+                placeholder="what's on your mind?"
                 value={this.state.description}
-                onChange={this.handleChange}
-              />
+                onChange={this.handleChange}>
+
+              </textarea>
+              <div className="form-group">
+                <label htmlFor="uploadFile">Add to your post</label>
+                <input type="file" name="uploadFile" accept="image/*,video/*" className="form-control-file" onChange={this.handleChange2} />
+              </div>
+
+
+
             </div>
-            <input type="submit" value="Submit" className="btn btn-primary" />
+
+            <input type="submit" value="Post" className="btn btn-primary btn-block" />
           </form>
         )}
         {this.state.submitted && <div className="jumbotron">
           <h1>Thank you for submiting</h1>
-          <button className="btn btn-secondary"  onClick={()=>(this.setState({submitted : false}))}>Add another application </button>
-           </div>}
+          <button className="btn btn-secondary" onClick={() => (this.setState({ submitted: false }))}>Add another application </button>
+        </div>}
       </div>
     );
   }

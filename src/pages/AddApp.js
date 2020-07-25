@@ -15,13 +15,15 @@ export default class AddApp extends Component {
     render() {
       return (
         <div className="container">
-          <h1 style={{ textAlign: "center" }}>Submit your Application!</h1>
+          <h1 style={{ textAlign: "center" }}>Add your Post!</h1>
           {!this.props.thread && (
             <div style={{ width: "100px", margin: "auto" }}>
               <BounceLoader color={"blue"} />
             </div>
           )}
-          {this.props.thread && <AppForm savePost={this.savePost} />}
+          {this.props.thread && <AppForm savePost={this.savePost} usersAddress={
+                 this.props.usersAddress
+                } />}
         </div>
       );
     }

@@ -53,7 +53,7 @@ export default class Example extends Component {
             box={this.props.box}
             currentUserAddr={this.props.usersAddress}
             // currentUser3BoxProfile={this.props.threeBox}
-            adminEthAddr={"0x2f4cE4f714C68A3fC871d1f543FFC24b9b3c2386"}
+            adminEthAddr={"0xa1465130f57bC31E517A439db0364270A3513FA0"}
             
           />
            <ChatBox

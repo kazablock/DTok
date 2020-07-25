@@ -16,12 +16,10 @@ class AppCard extends Component {
    
       <div className="card col-sm-4">
         <div style={{ padding: "20px" }}>
-          <h5>
-            {this.props.post.message.name ? this.props.post.message.name : "unknown"}
-          </h5>
+         
           {this.props.post.message.account && (
             <div style={{ marginBottom: "10px" }}>
-              <p>Submitted by</p>
+             
               <ProfileHover
                 address={this.props.post.message.account}
                 style={{ width: "100%" }}
@@ -44,13 +42,7 @@ class AppCard extends Component {
           />
           <div className="card-body">
           <p>{this.props.post.message.description}</p>
-          {this.props.post.message.url && (
-            <p>
-              <a href={this.props.post.message.url} target="_blank">
-                website
-              </a>
-            </p>
-          )}
+        
           
           
           <span className="card-title h-100">
@@ -81,9 +73,9 @@ export default class Home extends Component {
     return (
       <div className="container" style={{ textAlign: "center" }}>
         <h1 className="brand-font" style={{ fontSize: "4rem" }}>
-          Distribute
+          DTok
         </h1>
-        <p>The Decentralised App Store.</p>
+        <p>The Decentralised Social Network.</p>
         <div className="row" style={{ marginTop: "10%" }}>
           {(!this.props.posts || this.props.posts.length < 1) && (
             <div style={{ width: "60px", margin: "auto" }}>
