@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import AddApp from "./pages/AddApp";
 import Profile from "./pages/Profile";
 import ChatBox from '3box-chatbox-react';
-import { SPACE_NAME } from "./Constants";
+// import { SPACE_NAME } from "./Constants";
 
 const getThreeBox = async address => {
   const profile = await Box.getProfile(address);
@@ -43,7 +43,7 @@ export default class App extends Component {
     const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
     const box = await Box.openBox(this.state.accounts[0], window.ethereum);
     this.setState({ box });
-    const space = await this.state.box.openSpace(SPACE_NAME);
+    const space = await this.state.box.openSpace(process.env.REACT_APP_SPACE_NAME);
     
     this.setState({ space });
     

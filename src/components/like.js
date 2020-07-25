@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { SPACE_NAME } from "../Constants";
+// import { SPACE_NAME } from "../Constants";
 import {FaRegHeart} from "react-icons/fa";
 import {FaHeart} from "react-icons/fa";
 export default class Like extends Component {

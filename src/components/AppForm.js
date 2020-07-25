@@ -1,8 +1,8 @@
 
 import React, { Component } from "react";
 import sha256 from 'crypto-js/sha256';
-import {API_KEY} from '../Constants';
-import {API_SECRET} from '../Constants';
+// import {API_KEY} from '../Constants';
+// import {API_SECRET} from '../Constants';
 import Hex from 'crypto-js/enc-hex';
 
 
@@ -18,20 +18,14 @@ export default class AppForm extends Component {
     // console.log(event.target.files[0],event.target.value)
     this.setState(Object.assign({ [event.target.name]: event.target.value }));
   };
-  test = async (event) => {
-    const files = await fleekStorage.listFiles({
-      apiKey: API_KEY,
-      apiSecret: API_SECRET,
+ 
 
-    })
-    console.log(files)
-  }
   handleChange2 = event => {
 
     const file = event.target.files[0];
 
     console.log(event.target.files[0], file.name)
-
+    // console.log(process.env.REACT_APP_API_KEY);
     const reader = new FileReader()
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
@@ -54,9 +48,10 @@ export default class AppForm extends Component {
     event.preventDefault();
     this.validateFormFields();
     try {
+      console.log(process.env.API_KEY);
       const uploadedFile = await fleekStorage.upload({
-        apiKey: 'eznzFPmn1E6dYkkaernc8Q==',
-        apiSecret: 'sibjDT4H40hVElJdMgrW4xKL8SZ6ZECI4rX0zXoRowE=',
+        apiKey: process.env.REACT_APP_API_KEY,
+        apiSecret: process.env.REACT_APP_API_SECRET,  
         key: this.props.usersAddress + "/" + this.state.selectedFileName,
         data: this.state.selectedFileData,
       }).then((er) =>{
@@ -87,7 +82,7 @@ export default class AppForm extends Component {
     return (
 
       <div style={{ maxWidth: "500px", margin: "auto" }}>
-        <button onClick={this.test} >kk</button>
+        {/* <button onClick={this.test} >kk</button> */}
         {!this.state.submitted && (
           <form onSubmit={this.handleSubmit}>
 

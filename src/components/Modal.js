@@ -1,7 +1,7 @@
 import { Modal, Button } from "react-bootstrap";
 import React, { Component } from "react";
 import CommentBox from "3box-comments-react";
-import { SPACE_NAME } from "../Constants";
+// import { SPACE_NAME } from "../Constants";
 import Like from "./Like";
 import ChatBox from '3box-chatbox-react';
 export default class Example extends Component {
@@ -48,7 +48,7 @@ export default class Example extends Component {
           <Modal.Body>{this.props.app.description}
           <div>
           <CommentBox
-            spaceName={SPACE_NAME}
+            spaceName={process.env.REACT_APP_SPACE_NAME}
             threadName={this.props.app.name}
             box={this.props.box}
             currentUserAddr={this.props.usersAddress}
