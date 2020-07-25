@@ -10,7 +10,7 @@ export default class AddApp extends Component {
     savePost = async formData => {
       formData.account = this.props.accounts[0];
       await this.props.thread.post(formData);
-      this.props.getAppsThread();
+      // this.props.getAppsThread();
     };
     render() {
       return (

@@ -1,6 +1,10 @@
 
 import React, { Component } from "react";
-// import sha256 from 'crypto-js/sha256';
+import sha256 from 'crypto-js/sha256';
+import {API_KEY} from '../Constants';
+import {API_SECRET} from '../Constants';
+import Hex from 'crypto-js/enc-hex';
+
 
 // import ReactPlayer from 'react-player/lazy';
 
@@ -16,8 +20,8 @@ export default class AppForm extends Component {
   };
   test = async (event) => {
     const files = await fleekStorage.listFiles({
-      apiKey: 'eznzFPmn1E6dYkkaernc8Q==',
-      apiSecret: 'sibjDT4H40hVElJdMgrW4xKL8SZ6ZECI4rX0zXoRowE=',
+      apiKey: API_KEY,
+      apiSecret: API_SECRET,
 
     })
     console.log(files)
@@ -57,7 +61,9 @@ export default class AppForm extends Component {
         data: this.state.selectedFileData,
       }).then((er) =>{
         this.setState({ "appImage": er.publicUrl });
-        // const ha=sha256(this.state.description+this.state.appImage)
+        const ha=sha256(this.state.description+this.state.appImage).toString(Hex);
+        console.log(ha);
+        this.setState({"name":ha});
 
 
     
@@ -69,7 +75,7 @@ export default class AppForm extends Component {
       console.log(error)
     }
     this.props.savePost({
-
+      name:this.state.name,
       appImage: this.state.appImage,
       description: this.state.description
     });

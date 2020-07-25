@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavDropdown, Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 
 export default class Navi extends Component {
   render() {

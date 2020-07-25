@@ -52,6 +52,7 @@ export default class Example extends Component {
             threadName={this.props.app.name}
             box={this.props.box}
             currentUserAddr={this.props.usersAddress}
+            useHovers={true}
             // currentUser3BoxProfile={this.props.threeBox}
             adminEthAddr={"0xa1465130f57bC31E517A439db0364270A3513FA0"}
             
