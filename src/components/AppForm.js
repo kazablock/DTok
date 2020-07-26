@@ -47,22 +47,22 @@ export default class AppForm extends Component {
     console.log("to do - validiate form");
 
   }
-  test = async () => {
-    const p = await this.props.box.public.all()
-    // await this.props.box.public.remove("74f6fdbb567cb1befdf8a552a23520b7826568d91c45aed475255d28f1ecca43")  
-    // await this.props.box.public.remove("103c3209ee0f2ccb96ea1f3d60689c5d106d546c9bbd264b96a8ce94cd1e973f")
-    console.log(p)
+  // test = async () => {
+  //   const p = await this.props.box.public.all()
+  //   // await this.props.box.public.remove("74f6fdbb567cb1befdf8a552a23520b7826568d91c45aed475255d28f1ecca43")  
+  //   // await this.props.box.public.remove("103c3209ee0f2ccb96ea1f3d60689c5d106d546c9bbd264b96a8ce94cd1e973f")
+  //   console.log(p)
    
 
 
    
-  }
+  // }
   handleSubmit = async (event) => {
     event.preventDefault();
     this.setState({ submitting: true });
     this.validateFormFields();
     try {
-      console.log(process.env.API_KEY);
+      //console.log(process.env.API_KEY);
       const uploadedFile = await fleekStorage.upload({
         apiKey: process.env.REACT_APP_API_KEY,
         apiSecret: process.env.REACT_APP_API_SECRET,
@@ -106,7 +106,7 @@ export default class AppForm extends Component {
          {this.state.submitting && <div style={{ width: "60px", margin: "auto" }}>
           <HashLoader color={"blue"} />
         </div>}
-        <button onClick={this.test} >kk</button>
+        {/* <button onClick={this.test} >kk</button> */}
         {!this.state.submitted && (
           <form onSubmit={this.handleSubmit}>
 

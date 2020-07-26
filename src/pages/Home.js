@@ -14,11 +14,11 @@ class AppCard extends Component {
     return (                    
     <>
    
-      <div className="card col-sm-5 shadow col-md-5 m-2" sytle={{borderRadius: "25%",background:"#ffffff"}}>
+      <div className="card col-sm-5 col-md-5 m-2 shadow " sytle={{borderRadius: "25%",background:"#ffffff"}}>
         <div style={{ padding: "20px" }}>
          
           {this.props.post.message.account && (
-            <div style={{ marginBottom: "10px" }}>
+            <div style={{ marginBottom: "25px" }}>
              
               <ProfileHover
                 address={this.props.post.message.account}
