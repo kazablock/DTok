@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import AppForm from './../components/AppForm';
-import { BounceLoader } from 'react-spinners';
+import { HashLoader } from 'react-spinners';
 
 export default class AddApp extends Component {
     state = {
@@ -18,12 +18,14 @@ export default class AddApp extends Component {
           <h1 style={{ textAlign: "center" }}>Add your Post!</h1>
           {!this.props.thread && (
             <div style={{ width: "100px", margin: "auto" }}>
-              <BounceLoader color={"blue"} />
+              <HashLoader color={"blue"} />
             </div>
           )}
           {this.props.thread && <AppForm savePost={this.savePost} usersAddress={
                  this.props.usersAddress
-                } />}
+                } box={this.props.box}
+                
+                />}
         </div>
       );
     }

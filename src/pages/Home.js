@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProfileHover from "profile-hover";
-import { BounceLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 import Modal from "./../components/Modal";
 import {FaRegHeart} from "react-icons/fa";
 import {FaHeart} from "react-icons/fa";
@@ -14,7 +14,7 @@ class AppCard extends Component {
     return (                    
     <>
    
-      <div className="card col-sm-5 col-md-5 m-2" sytle={{borderRadius: "25%",background:"#ffffff"}}>
+      <div className="card col-sm-5 shadow col-md-5 m-2" sytle={{borderRadius: "25%",background:"#ffffff"}}>
         <div style={{ padding: "20px" }}>
          
           {this.props.post.message.account && (
@@ -79,7 +79,7 @@ export default class Home extends Component {
         <div className="row" style={{ marginTop: "10%" }}>
           {(!this.props.posts || this.props.posts.length < 1) && (
             <div style={{ width: "60px", margin: "auto" }}>
-              <BounceLoader color={"blue"} />
+              <HashLoader color={"blue"} />
             </div>
           )}
           <div className="container">

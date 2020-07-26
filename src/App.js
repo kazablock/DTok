@@ -4,12 +4,12 @@ import Box from "3box";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navi from "./components/Navi";
-import { BounceLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 
 import Home from "./pages/Home";
 import AddApp from "./pages/AddApp";
 import Profile from "./pages/Profile";
-import ChatBox from '3box-chatbox-react';
+// import ChatBox from '3box-chatbox-react';
 // import { SPACE_NAME } from "./Constants";
 
 const getThreeBox = async address => {
@@ -90,7 +90,7 @@ export default class App extends Component {
               )}
               {!this.state.space && (
                 <div style={{ width: "60px", margin: "auto" }}>
-                  <BounceLoader color={"blue"} />
+                  <HashLoader color={"blue"} />
                 </div>
               )}
             </Route>
