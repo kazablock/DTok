@@ -4,10 +4,25 @@ import { HashLoader } from "react-spinners";
 import Modal from "./../components/Modal";
 import {FaRegHeart} from "react-icons/fa";
 import {FaHeart} from "react-icons/fa";
+import {Dropdown,DropdownButton} from 'react-bootstrap'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
+toast.configure()
 
 class AppCard extends Component {
+  state = {
+    show: false,
+
+  };
+  async componentDidMount() {
+    const base="https://dtok.on.fleek.co/#/"
+    const shareurl=base+this.props.post.message.name
+    this.setState({shareUrl:shareurl})
+  }
   render(){
     const like=()=>{
 
@@ -15,17 +30,29 @@ class AppCard extends Component {
     return (                    
     <>
    
-      <div className="card col-sm-5 col-md-5 m-2 shadow " sytle={{borderRadius: "25%",background:"#ffffff"}}>
+      <div className="card col-sm-5 col-md-5 m-2 shadow " style={{borderRadius: "4%",background:"#ffffff"}}>
         <div style={{ padding: "20px" }}>
          
           {this.props.post.message.account && (
-            <div style={{ marginBottom: "40px" }}>
+            <div className="my-3">
              
               <ProfileHover
                 address={this.props.post.message.account}
                 style={{ width: "100%" }}
                 showName={true}
               />
+              <DropdownButton size="sm" className="float-right my-3"  id="dropdown-item-button" title="More">
+  
+  
+  <CopyToClipboard text={this.state.shareUrl}
+          onCopy={() => {
+            toast.dark("Link Copied to clipboard!",{position:toast.POSITION.BOTTOM_LEFT})}}>
+            <Dropdown.Item as="button">Share</Dropdown.Item>
+            
+         
+        </CopyToClipboard>
+  
+</DropdownButton>
             </div>
            
           )}
@@ -42,7 +69,7 @@ class AppCard extends Component {
             }
           />
           <div className="card-body">
-          <p>{this.props.post.message.description}</p>
+          <pre>{this.props.post.message.description}</pre>
         
           
           

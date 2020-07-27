@@ -17,6 +17,7 @@ export default class AppForm extends Component {
 
   handleChange = event => {
     // console.log(event.target.files[0],event.target.value)
+    console.log(event.target.value)
     this.setState(Object.assign({ [event.target.name]: event.target.value }));
   };
 
@@ -45,18 +46,19 @@ export default class AppForm extends Component {
 
   async validateFormFields() {
     console.log("to do - validiate form");
+    console.log(this.state.description)
 
   }
-  // test = async () => {
-  //   const p = await this.props.box.public.all()
-  //   // await this.props.box.public.remove("74f6fdbb567cb1befdf8a552a23520b7826568d91c45aed475255d28f1ecca43")  
-  //   // await this.props.box.public.remove("103c3209ee0f2ccb96ea1f3d60689c5d106d546c9bbd264b96a8ce94cd1e973f")
-  //   console.log(p)
+  test = () => {
+   
+    // await this.props.box.public.remove("74f6fdbb567cb1befdf8a552a23520b7826568d91c45aed475255d28f1ecca43")  
+    // await this.props.box.public.remove("103c3209ee0f2ccb96ea1f3d60689c5d106d546c9bbd264b96a8ce94cd1e973f")
+    console.log(this.state.description)
    
 
 
    
-  // }
+  }
   handleSubmit = async (event) => {
     event.preventDefault();
     this.setState({ submitting: true });
@@ -106,7 +108,7 @@ export default class AppForm extends Component {
          {this.state.submitting && <div style={{ width: "60px", margin: "auto" }}>
           <HashLoader color={"blue"} />
         </div>}
-        {/* <button onClick={this.test} >kk</button> */}
+        <button onClick={this.test} >kk</button>
         {!this.state.submitted && (
           <form onSubmit={this.handleSubmit}>
 
@@ -115,7 +117,7 @@ export default class AppForm extends Component {
 
             <div className="form-group">
               {/* <label htmlFor="exampleFormControlTextarea1">Example textarea</label> */}
-              <textarea id="exampleFormControlTextarea1" rows="3" name="description"
+              <textarea  style={{whiteSpace:'pre-wrap'}}id="exampleFormControlTextarea1" rows="3" name="description"
                 className="form-control"
                 aria-describedby="description"
                 placeholder="what's on your mind?"

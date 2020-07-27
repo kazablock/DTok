@@ -1,9 +1,14 @@
 import EditProfile from "3box-profile-edit-react";
 import React, { Component } from "react";
 import CommentBox from "3box-comments-react";
+import {Dropdown,DropdownButton} from 'react-bootstrap'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import AppCard from './../components/Appcard'
 
-
+toast.configure()
 class AppCard extends Component {
   // async componentDidUpdate(){
   //   this.setState({content:JSON.parse(this.props.post)})
@@ -19,7 +24,9 @@ class AppCard extends Component {
   async componentDidMount() {
     if (this.props.postId !== "memberSince" && this.props.postId !== "proof_did" && this.props.postId !== "name") {
       this.setState({ con: JSON.parse(this.props.postcontent) })
-
+      const base="https://dtok.on.fleek.co/#/"
+      const shareurl=base+this.props.postId
+      this.setState({shareUrl:shareurl})
       this.setState({ show: true })
 
     }
@@ -33,8 +40,20 @@ class AppCard extends Component {
     return (
       <>
 
-        <div className="card col-sm-5 col-md-5 shadow m-2" sytle={{ borderRadius: "25%", background: "#ffffff" }}>
+        <div className="card col-sm-5 col-md-5 shadow mx-5" >
           {(this.state.show) && (<div style={{ padding: "20px" }}>
+          <DropdownButton size="sm" className="float-right my-3"  id="dropdown-item-button" title="More">
+  
+  
+  <CopyToClipboard text={this.state.shareUrl?this.state.shareUrl:""}
+          onCopy={() => {
+            toast.dark("Link Copied to clipboard!",{position:toast.POSITION.BOTTOM_LEFT})}}>
+            <Dropdown.Item as="button">Share</Dropdown.Item>
+            
+         
+        </CopyToClipboard>
+  
+</DropdownButton>
 
             {/* <div style={{ marginBottom: "10px" }}></div> */}
 
@@ -43,7 +62,7 @@ class AppCard extends Component {
             />
 
             <div className="card-body">
-              <p>{this.state.con.description}</p>
+              <pre>{this.state.con.description}</pre>
 
 
 
@@ -91,9 +110,9 @@ export default class Profile extends Component {
   render() {
     return (
       <>
-        <div className="container">
         
-          <div style={{ margin: 'auto' }}>
+        
+          <div className="container flex" style={{ margin: 'auto' }}>
           <h1 style={{textAlign : "center"}}>Edit your 3Box Profile here 👇</h1>
 
             {!this.state.hideEdit && <EditProfile
@@ -116,7 +135,7 @@ export default class Profile extends Component {
           </div>
 
 
-          <div className="container-fluid">
+          
 
 
           <h1 style={{textAlign : "center",margin: 'auto'}}>My Posts</h1>
@@ -141,8 +160,8 @@ export default class Profile extends Component {
 
 
 
-          </div>
-        </div>
+          
+        
       </>);
   }
 }
