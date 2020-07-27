@@ -33,7 +33,7 @@ class AppCard extends Component {
     return (
       <>
 
-        <div className="card col-sm-5 flex-md-nowrap shadow m-2" sytle={{ borderRadius: "25%", background: "#ffffff" }}>
+        <div className="card col-sm-5 col-md-5 shadow m-2" sytle={{ borderRadius: "25%", background: "#ffffff" }}>
           {(this.state.show) && (<div style={{ padding: "20px" }}>
 
             {/* <div style={{ marginBottom: "10px" }}></div> */}
@@ -56,7 +56,7 @@ class AppCard extends Component {
                 useHovers={true}
 
                 adminEthAddr={"0xa1465130f57bC31E517A439db0364270A3513FA0"}
-
+                style={{ width: "100%" }}
               />
             </div>
 
@@ -90,52 +90,59 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div style={{ margin: 'auto' }}>
-
-          {!this.state.hideEdit && <EditProfile
-            box={this.props.box}
-            space={this.props.space}
-            currentUserAddr={this.props.accounts[0]}
-            currentUser3BoxProfile={this.props.threeBoxProfile}
-            redirectFn={() => (this.setState({ hideEdit: true }))}
-          />}
-          {this.state.hideEdit && (
-            <div>
-              <h2>{this.props.threeBoxProfile.name}</h2>
-              <img src={this.props.threeBoxProfile.image.contentUrl['/']} />
-              <p>{this.props.threeBoxProfile.description}</p>
-              <p>{this.props.threeBoxProfile.emoji}</p>
-              <button onClick={() => (this.setState({ hideEdit: false }))}>edit</button>
-
-            </div>
-          )}
-        </div>
+      <>
         <div className="container">
+        
+          <div style={{ margin: 'auto' }}>
+          <h1 style={{textAlign : "center"}}>Edit your 3Box Profile here 👇</h1>
 
-          {this.state.selfposts &&
-            Object.keys(this.state.selfposts).map((postId, i) => {
-              return (
+            {!this.state.hideEdit && <EditProfile
+              box={this.props.box}
+              space={this.props.space}
+              currentUserAddr={this.props.accounts[0]}
+              currentUser3BoxProfile={this.props.threeBoxProfile}
+              redirectFn={() => (this.setState({ hideEdit: true }))}
+            />}
+            {this.state.hideEdit && (
+              <div>
+                <h2>{this.props.threeBoxProfile.name}</h2>
+                <img src={this.props.threeBoxProfile.image.contentUrl['/']} />
+                <p>{this.props.threeBoxProfile.description}</p>
+                <p>{this.props.threeBoxProfile.emoji}</p>
+                <button onClick={() => (this.setState({ hideEdit: false }))}>edit</button>
 
-                <AppCard
-                  postcontent={this.state.selfposts[postId]}
-                  postId={postId}
-
-                  key={i}
-
-                  space={this.props.space}
-                  box={this.props.box}
-                  usersAddress={this.props.accounts ?
-                    this.props.accounts[0] : null
-                  }
-                  i={i} />
-              );
-            })}
+              </div>
+            )}
+          </div>
 
 
+          <div className="container-fluid">
 
+
+          <h1 style={{textAlign : "center",margin: 'auto'}}>My Posts</h1>
+            {this.state.selfposts &&
+              Object.keys(this.state.selfposts).map((postId, i) => {
+                return (
+
+                  <AppCard
+                    postcontent={this.state.selfposts[postId]}
+                    postId={postId}
+
+                    key={i}
+
+                    space={this.props.space}
+                    box={this.props.box}
+                    usersAddress={this.props.accounts ?
+                      this.props.accounts[0] : null
+                    }
+                    i={i} />
+                );
+              })}
+
+
+
+          </div>
         </div>
-      </div>
-    );
+      </>);
   }
 }

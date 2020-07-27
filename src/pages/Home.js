@@ -6,6 +6,7 @@ import {FaRegHeart} from "react-icons/fa";
 import {FaHeart} from "react-icons/fa";
 
 
+
 class AppCard extends Component {
   render(){
     const like=()=>{
@@ -18,7 +19,7 @@ class AppCard extends Component {
         <div style={{ padding: "20px" }}>
          
           {this.props.post.message.account && (
-            <div style={{ marginBottom: "25px" }}>
+            <div style={{ marginBottom: "40px" }}>
              
               <ProfileHover
                 address={this.props.post.message.account}
@@ -76,7 +77,7 @@ export default class Home extends Component {
           DTok
         </h1>
         <p>The Decentralised Social Network.</p>
-        <div className="row" style={{ marginTop: "10%" }}>
+        <div className="row" style={{ margin: 'auto' }}>
           {(!this.props.posts || this.props.posts.length < 1) && (
             <div style={{ width: "60px", margin: "auto" }}>
               <HashLoader color={"blue"} />

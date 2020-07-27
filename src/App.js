@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Box from "3box";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navi from "./components/Navi";
 import { HashLoader } from "react-spinners";

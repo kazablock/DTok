@@ -139,9 +139,7 @@ export default class AppForm extends Component {
           <h1>Hurray!</h1>
           <button className="btn btn-secondary" onClick={() => (this.setState({ submitted: false }))}>Add another Post </button>
         </div>}
-        {this.state.submitting && <div style={{ width: "60px", margin: "auto" }}>
-          <HashLoader color={"blue"} />
-        </div>}
+        
       </div>
 
     );
