@@ -125,7 +125,7 @@ export default class AppForm extends Component {
          {this.state.submitting && <div style={{ width: "60px", margin: "auto" }}>
           <HashLoader color={"blue"} />
         </div>}
-        <button onClick={this.test} >kk</button>
+        {/* <button onClick={this.test} >kk</button> */}
         {!this.state.submitted && (
           <form onSubmit={this.handleSubmit}>
 
