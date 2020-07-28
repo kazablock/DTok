@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import CommentBox from "3box-comments-react";
 import {Dropdown,DropdownButton} from 'react-bootstrap'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
+import ReactPlayer from 'react-player/lazy';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import AppCard from './../components/Appcard'
@@ -57,11 +57,13 @@ class AppCard extends Component {
 
             {/* <div style={{ marginBottom: "10px" }}></div> */}
 
-            <img className="card-img-top"
+            {this.state.con.isImage==="true" &&   (<img className="card-img-top"
               src={this.state.con.appImage}
-            />
+            />)}
 
             <div className="card-body">
+            <div className="embed-responsive embed-responsive-4by3">
+            {this.state.con.isImage==="false"&&(<ReactPlayer url={this.state.con.appImage} controls={true} />)}</div>
               <pre>{this.state.con.description}</pre>
 
 

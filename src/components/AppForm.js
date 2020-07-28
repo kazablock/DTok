@@ -11,7 +11,7 @@ import { HashLoader } from "react-spinners";
 
 import fleekStorage from '@fleekhq/fleek-storage-js'
 
-const blankState = { name: "", url: "", appImage: "", description: "", submitting: false };
+const blankState = { name: "", url: "", appImage: "", description: "", submitting: false,isimage:"false"};
 export default class AppForm extends Component {
   state = blankState;
 
@@ -21,19 +21,34 @@ export default class AppForm extends Component {
     this.setState(Object.assign({ [event.target.name]: event.target.value }));
   };
 
-
+  // checkType=(file)=>{
+    
+  // }
   handleChange2 = event => {
 
     const file = event.target.files[0];
-
-
-    console.log(event.target.files[0], file.name)
+    console.log(file.type.split("/").includes("image"))
+    // this.checkType(file)
+    // if(file.type.split("/").includes("image"))
+    // {
+    //   console.log("hi")
+    //   this.setState({"image":"true"})
+    // }
+   
+    
+    console.log(file, file.name)
     // console.log(process.env.REACT_APP_API_KEY);
     const reader = new FileReader()
+    console.log(this.state.image)
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
       console.log(reader.result)
-
+      if(file.type.split("/").includes("image"))
+      {
+        console.log("hi")
+        this.setState({"isimage":"true"})
+      }
+      console.log(this.state.isimage)
       this.setState({ "selectedFileData": reader.result })
       this.setState({ "selectedFileName": file.name })
 
@@ -80,7 +95,8 @@ export default class AppForm extends Component {
         this.props.savePost({
           name: this.state.name,
           appImage: this.state.appImage,
-          description: this.state.description
+          description: this.state.description,
+          isImage:this.state.isimage
         });
 
 
@@ -89,7 +105,8 @@ export default class AppForm extends Component {
       // console.log(uploadedFile)
       const tempjson = {
         description: this.state.description,
-        appImage: this.state.appImage
+        appImage: this.state.appImage,
+        isImage:this.state.isimage
 
       }
       await this.props.box.public.set(this.state.name, JSON.stringify(tempjson)).then(() => this.setState({ submitting: false }));
@@ -117,7 +134,7 @@ export default class AppForm extends Component {
 
             <div className="form-group">
               {/* <label htmlFor="exampleFormControlTextarea1">Example textarea</label> */}
-              <textarea  style={{whiteSpace:'pre-wrap'}}id="exampleFormControlTextarea1" rows="3" name="description"
+              <textarea  style={{whiteSpace:'pre-wrap'}} id="exampleFormControlTextarea1" rows="3" name="description"
                 className="form-control"
                 aria-describedby="description"
                 placeholder="what's on your mind?"
