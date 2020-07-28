@@ -5,6 +5,7 @@ import sha256 from 'crypto-js/sha256';
 // import {API_SECRET} from '../Constants';
 import Hex from 'crypto-js/enc-hex';
 import { HashLoader } from "react-spinners";
+import {Redirect} from 'react-router-dom'
 
 
 // import ReactPlayer from 'react-player/lazy';
@@ -154,10 +155,7 @@ export default class AppForm extends Component {
             <input type="submit" value="Post" className="btn btn-primary btn-block" />
           </form>
         )}
-        {this.state.submitted && <div className="jumbotron">
-          <h1>Hurray!</h1>
-          <button className="btn btn-secondary" onClick={() => (this.setState({ submitted: false }))}>Add another Post </button>
-        </div>}
+        {this.state.submitted && <Redirect to="/" />}
         
       </div>
 

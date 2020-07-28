@@ -36,7 +36,7 @@ class AppCard extends Component {
           <div style={{ padding: "20px" }}>
 
             {this.props.post.message.account && (
-              <div className="my-3">
+              <span className="my-3">
 
                 <ProfileHover
                   address={this.props.post.message.account}
@@ -56,7 +56,7 @@ class AppCard extends Component {
                   </CopyToClipboard>
 
                 </DropdownButton>
-              </div>
+              </span>
 
             )}
             {this.props.post.message.isImage==="true" && (<img className="card-img-top"
