@@ -76,8 +76,8 @@ class AppCard extends Component {
            
             <div className="card-body">
             
-<div className="embed-responsive embed-responsive-4by3">
-            {this.props.post.message.isImage==="false"&&(<ReactPlayer url={this.props.post.message.appImage} controls={true} />)}</div>
+<div className="embed-responsive embed-responsive-16by9">
+            {this.props.post.message.isImage==="false"&&(<ReactPlayer url="https://youtu.be/60ItHLz5WEA" controls={true} pip={true} muted volume={null} stopOnUnmount={false} />)}</div>
               <pre>{this.props.post.message.description}</pre>
 
 
