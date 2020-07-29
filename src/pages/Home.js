@@ -20,7 +20,7 @@ class AppCard extends Component {
 
   };
   async componentDidMount() {
-    const base = "https://dtok.on.fleek.co/#/share"
+    const base = "https://dtok.on.fleek.co/#/share/"
     const shareurl = base + this.props.post.message.name
     this.setState({ shareUrl: shareurl })
     console.log(this.props.post.message.appImage)
@@ -78,7 +78,7 @@ class AppCard extends Component {
             
 <div className="embed-responsive embed-responsive-16by9">
             {this.props.post.message.isImage==="false"&&(<ReactPlayer url={this.props.post.message.appImage} controls={true} pip={true} muted volume={null} stopOnUnmount={false} />)}</div>
-              <pre>{this.props.post.message.description}</pre>
+              <pre className="text-justify text-center">{this.props.post.message.description}</pre>
 
 
 
