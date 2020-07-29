@@ -32,7 +32,7 @@ class AppCard extends Component {
     return (
       <>
 
-        <div className="card col-sm-5 col-md-5 m-2 shadow " style={{ borderRadius: "4%", background: "#ffffff" }}>
+        <div className="card col-sm-5 col-md-5 my-5 shadow" style={{ borderRadius: "4%", background: "#ffffff" }}>
           <div style={{ padding: "20px" }}>
 
             {this.props.post.message.account && (

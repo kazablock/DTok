@@ -25,26 +25,10 @@ export default class Example extends Component {
 
         <Modal show={this.state.show} onHide={this.state.handleClose} size="lg">
           <Modal.Header closeButton>
-            <Modal.Title>{this.props.app.name}</Modal.Title>
+            <Modal.Title className="text-justify text-center">{this.props.app.name}</Modal.Title>
             
           </Modal.Header>
-          <img
-            style={{
-              width: "200px",
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginTop: "40px"
-            }}
-            src={
-              this.props.app.appImage
-                ? this.props.app.appImage
-                : "https://via.placeholder.com/200"
-            }
-            onError={ev =>
-              (ev.target.src =
-                "http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png")
-            }
-          />
+         
           <Modal.Body>{this.props.app.description}
           <div>
           <CommentBox

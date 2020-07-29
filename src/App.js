@@ -8,7 +8,8 @@ import { HashLoader } from "react-spinners";
 
 import Home from "./pages/Home";
 import AddApp from "./pages/AddPost";
-import Profile from "./pages/Profile";
+import MyProfile from "./pages/MyProfile";
+// import Profile from "./pages/Profile";
 import SharePage from "./pages/SharePage"
 // import ChatBox from '3box-chatbox-react';
 // import { SPACE_NAME } from "./Constants";
@@ -79,11 +80,16 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Navi />
+        {this.state.accounts && (
+          <Navi 
+          usersAddress={
+            this.state.accounts ? this.state.accounts[0] : null
+            }
+          />)}
           <Switch>
-            <Route path="/profile">
+            <Route path="/myprofile">
               {this.state.space && (
-                <Profile
+                <MyProfile
                   box={this.state.box}
                   space={this.state.space}
                   accounts={this.state.accounts}
@@ -132,10 +138,28 @@ export default class App extends Component {
             <HashLoader color={"blue"} />
           </div>)
             }/>
+
+
+              <Route path='/profile/:address' render={({match}) => (
+            this.state.space&&this.state.accounts?
+            <div style={{ background: "#f0f2f5",justifyContent:"center",textAlign:"center" }}>
+            <MyProfile id={match.params.address}
+            box={this.state.box}
+            space={this.state.space}
+            usersAddress={
+              this.state.accounts ? this.state.accounts[0] : null
+              }
+            
+            />
+            </div>:<div style={{ width: "60px", margin: "auto" }}>
+            <HashLoader color={"blue"} />
+          </div>
+           )
+            }/>
              
           
             <Route path="/">
-            <div style={{ background: "#f0f2f5" }}>
+            <div style={{ background: "#f0f2f5",display:"flex",justifyContent:"center" }}>
               <Home
                 posts={this.state.posts}
                 space={this.state.space}
