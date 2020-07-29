@@ -22,9 +22,9 @@ class AppCard extends Component {
     this.props.space.unsubscribeThread(this.props.postId)
   }
   async componentDidMount() {
-    if (this.props.postId !== "memberSince" && this.props.postId !== "proof_did" && this.props.postId !== "name") {
+    if (this.props.postId !== "memberSince" && this.props.postId !== "proof_did" && this.props.postId !== "name"&&this.props.postId!=="isImage") {
       this.setState({ con: JSON.parse(this.props.postcontent) })
-      const base="https://dtok.on.fleek.co/#/"
+      const base="https://dtok.on.fleek.co/#/share"
       const shareurl=base+this.props.postId
       this.setState({shareUrl:shareurl})
       this.setState({ show: true })

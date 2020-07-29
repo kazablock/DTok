@@ -110,7 +110,15 @@ export default class AppForm extends Component {
         isImage:this.state.isimage
 
       }
-      await this.props.box.public.set(this.state.name, JSON.stringify(tempjson)).then(() => this.setState({ submitting: false }));
+      const tempjson2={
+        description: this.state.description,
+        appImage: this.state.appImage,
+        isImage:this.state.isimage,
+        createdBy:this.props.usersAddress
+
+      }
+      await this.props.box.public.set(this.state.name, JSON.stringify(tempjson));
+      await this.props.space.public.set(this.state.name, JSON.stringify(tempjson2)).then(() => this.setState({ submitting: false }));
     } catch (error) {
       console.log(error)
     }

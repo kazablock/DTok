@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AppForm from './../components/AppForm';
+import AppForm from '../components/PostForm';
 import { HashLoader } from 'react-spinners';
 
 export default class AddApp extends Component {
@@ -23,7 +23,7 @@ export default class AddApp extends Component {
           )}
           {this.props.thread && <AppForm savePost={this.savePost} usersAddress={
                  this.props.usersAddress
-                } box={this.props.box}
+                } box={this.props.box} space={this.props.space}
                 
                 />}
         </div>

@@ -7,8 +7,9 @@ import Navi from "./components/Navi";
 import { HashLoader } from "react-spinners";
 
 import Home from "./pages/Home";
-import AddApp from "./pages/AddApp";
+import AddApp from "./pages/AddPost";
 import Profile from "./pages/Profile";
+import SharePage from "./pages/SharePage"
 // import ChatBox from '3box-chatbox-react';
 // import { SPACE_NAME } from "./Constants";
 
@@ -74,6 +75,7 @@ export default class App extends Component {
       return <h1>Please install metamask</h1>;
     }
 
+
     return (
       <Router>
         <div>
@@ -112,6 +114,26 @@ export default class App extends Component {
               )}
               {!this.state.accounts && <h1>Login with metamask</h1>}
             </Route>
+            
+
+           
+            <Route path='/share/:id' render={({match}) => (
+            this.state.space?
+            <div style={{ background: "#f0f2f5",justifyContent:"center",textAlign:"center" }}>
+            <SharePage id={match.params.id}
+            box={this.state.box}
+            space={this.state.space}
+            usersAddress={
+              this.state.accounts ? this.state.accounts[0] : null
+              }
+            
+            />
+            </div>:<div style={{ width: "60px", margin: "auto" }}>
+            <HashLoader color={"blue"} />
+          </div>)
+            }/>
+             
+          
             <Route path="/">
             <div style={{ background: "#f0f2f5" }}>
               <Home
@@ -126,8 +148,8 @@ export default class App extends Component {
 
               />
               </div>
-          
             </Route>
+           
           </Switch>
         </div>
       </Router>

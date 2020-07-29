@@ -20,7 +20,7 @@ class AppCard extends Component {
 
   };
   async componentDidMount() {
-    const base = "https://dtok.on.fleek.co/#/"
+    const base = "https://dtok.on.fleek.co/#/share"
     const shareurl = base + this.props.post.message.name
     this.setState({ shareUrl: shareurl })
     console.log(this.props.post.message.appImage)
@@ -43,7 +43,7 @@ class AppCard extends Component {
                   style={{ width: "100%" }}
                   showName={true}
                 />
-                <DropdownButton size="sm" className="float-right my-3" id="dropdown-item-button" title="More">
+                <DropdownButton size="sm" className="float-right" id="dropdown-item-button" title="More">
 
 
                   <CopyToClipboard text={this.state.shareUrl}
@@ -59,7 +59,7 @@ class AppCard extends Component {
               </span>
 
             )}
-            {this.props.post.message.isImage==="true" && (<img className="card-img-top"
+            {this.props.post.message.isImage==="true" && (<img className="card-img-top mt-5"
 
               src={
                 this.props.post.message.appImage
@@ -77,7 +77,7 @@ class AppCard extends Component {
             <div className="card-body">
             
 <div className="embed-responsive embed-responsive-16by9">
-            {this.props.post.message.isImage==="false"&&(<ReactPlayer url="https://youtu.be/60ItHLz5WEA" controls={true} pip={true} muted volume={null} stopOnUnmount={false} />)}</div>
+            {this.props.post.message.isImage==="false"&&(<ReactPlayer url={this.props.post.message.appImage} controls={true} pip={true} muted volume={null} stopOnUnmount={false} />)}</div>
               <pre>{this.props.post.message.description}</pre>
 
 
@@ -108,8 +108,8 @@ class AppCard extends Component {
 export default class Home extends Component {
   render() {
     return (
-      <div className="container" style={{ textAlign: "center" }}>
-        <h1 className="brand-font" style={{ fontSize: "4rem" }}>
+      <div className="container" style={{ textAlign: "center" }} >
+        <h1 className="brand-font" style={{ fontSize: "5rem" }}>
           DTok
         </h1>
         <p>The Decentralised Social Network.</p>
