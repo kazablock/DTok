@@ -87,21 +87,7 @@ export default class App extends Component {
             }
           />)}
           <Switch>
-            <Route path="/myprofile">
-              {this.state.space && (
-                <MyProfile
-                  box={this.state.box}
-                  space={this.state.space}
-                  accounts={this.state.accounts}
-                  threeBoxProfile={this.state.threeBoxProfile}
-                />
-              )}
-              {!this.state.space && (
-                <div style={{ width: "60px", margin: "auto" }}>
-                  <HashLoader color={"blue"} />
-                </div>
-              )}
-            </Route>
+            
             <Route path="/add-post">
               {this.state.accounts && (
                 <AddApp

@@ -117,7 +117,7 @@ export default class MyProfile extends Component {
       console.log(this.props.usersAddress)
       console.log(this.props.id)
       
-      const p=Box.getProfile(this.props.id)
+      const p=await Box.getProfile(this.props.id)
       this.setState({ selfposts: p })
     }
     
