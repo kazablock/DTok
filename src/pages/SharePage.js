@@ -18,22 +18,38 @@ export default class SharePage extends Component {
         
         try {
             console.log(this.props)
+            // const shareurl=""
         const base = "https://dtok.on.fleek.co/#/share/"
+        this.props.posts.map((post,i)=>{
+          if(post.message.name==this.props.id)
+          {
+           const shareurl= base + this.props.id
+            this.setState({content:post})
+            this.setState({ shareUrl: shareurl })
+            this.setState({ show: true })
+          }
+          else{
+            console.log(post.message.name)
+          }
+          
+
+        })
         
-       const conil= await this.props.space.public.get(this.props.id)
-        const shareurl = base + this.props.id
+      //  const conil= await this.props.space.public.get(this.props.id)
+        
        
-        this.setState({ shareUrl: shareurl })
+        // this.setState({ shareUrl: shareurl })
         
-        this.setState({content : JSON.parse(conil)})
-        console.log(JSON.parse(conil).createdBy)
-        console.log(this.state.content.appImage)
-        console.log(conil.createdBy)
-        this.setState({ show: true })
+        // this.setState({content : JSON.parse(conil)})
+        // console.log(JSON.parse(conil).createdBy)
+        // console.log(this.state.content.appImage)
+        // console.log(conil.createdBy)
+        
        
         } 
         catch (error) {
             // console.log(params)
+            console.log(error)
             console.log(await this.props.space.public.get(this.props.id))
         }
       
@@ -43,11 +59,11 @@ export default class SharePage extends Component {
         
       return (
           <>
-          <div className="card col-sm-5 col-md-5 shadow mx-5 my-5" >
+          <div className="card col-sm-5 col-md-5 shadow mx-2 my-5 py-4" style={{ borderRadius: "4%", background: "#ffffff" }} >
           {(this.state.show) && (<div >
           <span className="my-3">
           <ProfileHover
-                  address={this.state.content.createdBy}
+                  address={this.state.content.message.account}
                   style={{ width: "100%" }}
                   showName={true}
                 />
@@ -67,14 +83,14 @@ export default class SharePage extends Component {
 
             {/* <div style={{ marginBottom: "10px" }}></div> */}
 
-            {this.state.content.isImage==="true" &&   (<img className="card-img-top"
-              src={this.state.content.appImage}
+            {this.state.content.message.isImage==="true" &&   (<img className="card-img-top"
+              src={this.state.content.message.appImage}
             />)}
 
             <div className="card-body">
             <div className="embed-responsive embed-responsive-4by3">
-            {this.state.content.isImage==="false"&&(<ReactPlayer url={this.state.content.appImage} controls={true} />)}</div>
-              <pre>{this.state.content.description}</pre>
+            {this.state.content.message.isImage==="false"&&(<ReactPlayer url={this.state.content.message.appImage} controls={true} />)}</div>
+              <pre className="text-justify text-center">{this.state.content.message.description}</pre>
 
 
 

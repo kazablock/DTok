@@ -112,7 +112,7 @@ export default class App extends Component {
 
            
             <Route path='/share/:id' render={({match}) => (
-            this.state.space?
+            this.state.posts?
             <div style={{ background: "#f0f2f5",justifyContent:"center",textAlign:"center" }}>
             <SharePage id={match.params.id}
             box={this.state.box}
@@ -120,6 +120,8 @@ export default class App extends Component {
             usersAddress={
               this.state.accounts ? this.state.accounts[0] : null
               }
+            posts={this.state.posts}
+            getAppsThread={this.getAppsThread}
             
             />
             </div>:<div style={{ width: "60px", margin: "auto" }}>
