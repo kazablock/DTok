@@ -108,7 +108,9 @@ class AppCard extends Component {
 export default class Home extends Component {
   render() {
     return (
+     
       <div className="container" style={{ textAlign: "center" }} >
+       
         <h1 className="brand-font" style={{ fontSize: "5rem" }}>
           DTok
         </h1>

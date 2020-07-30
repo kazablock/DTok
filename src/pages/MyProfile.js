@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player/lazy';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Box from "3box";
+import { HashLoader } from 'react-spinners';
 // import AppCard from './../components/Appcard'
 
 toast.configure()
@@ -41,13 +42,13 @@ class AppCard extends Component {
 
     return (
       <>
-
-        <div className="card col-sm-5 col-md-5 m-2 shadow" style={{ borderRadius: "4%", background: "#ffffff" }} >
+        
+        <div className="card col-sm-5 col-md-5 my-5 shadow" style={{ borderRadius: "4%", background: "#ffffff" }} >
           {(this.state.show) && (<div style={{ padding: "20px" }}>
           <span className="my-3">
 
 <ProfileHover
-  address={this.state.con.createdBy?this.state.createdBy:this.props.usersAddress}
+  address={this.props.owner==="true"?this.props.usersAddress:this.props.id}
   style={{ width: "100%" }}
   showName={true}
 />
@@ -109,7 +110,7 @@ export default class MyProfile extends Component {
     if((this.props.id).toLowerCase()===this.props.usersAddress)
     {
       console.log(this.props.id)
-      const p = await this.props.box.public.all()
+      const p = await this.props.space.public.all()
       this.setState({owner:true})
       this.setState({ selfposts: p })
       
@@ -180,13 +181,20 @@ export default class MyProfile extends Component {
                     box={this.props.box}
                     usersAddress={this.props.usersAddress
                     }
+                    owner={(this.state.owner).toString()}
+                    id={this.props.id}
+
                     i={i} />
                 );
               })}
               </div>
 
 
-
+             {!this.state.selfposts&& (
+             <div style={{ width: "60px", margin: "auto" }}>
+            <HashLoader color={"blue"} />
+          </div>)
+          }
           
         
       </>);

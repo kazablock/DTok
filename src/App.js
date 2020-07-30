@@ -11,7 +11,7 @@ import AddApp from "./pages/AddPost";
 import MyProfile from "./pages/MyProfile";
 // import Profile from "./pages/Profile";
 import SharePage from "./pages/SharePage"
-// import ChatBox from '3box-chatbox-react';
+import ChatBox from '3box-chatbox-react';
 // import { SPACE_NAME } from "./Constants";
 
 const getThreeBox = async address => {
@@ -37,8 +37,8 @@ export default class App extends Component {
     await this.getAddressFromMetaMask();
     if (this.state.accounts) {
       console.log(typeof(this.state.accounts[0]))
-      const acc=this.state.accounts[0]
-      this.setState({acc})
+      // const acc=this.state.accounts[0]
+    
       const threeBoxProfile = await getThreeBox(this.state.accounts[0]);
       this.setState({ threeBoxProfile });
     }
@@ -80,12 +80,14 @@ export default class App extends Component {
     return (
       <Router>
         <div>
+        
         {this.state.accounts && (
           <Navi 
           usersAddress={
             this.state.accounts ? this.state.accounts[0] : null
             }
           />)}
+           
           <Switch>
             
             <Route path="/add-post">
@@ -154,7 +156,7 @@ export default class App extends Component {
                 usersAddress={
                   this.state.accounts ? this.state.accounts[0] : null
                 }
-                acc={this.state.acc}
+                
 
               />
               </div>
@@ -162,6 +164,17 @@ export default class App extends Component {
            
           </Switch>
         </div>
+        {this.state.space&&this.state.accounts&&(<ChatBox
+      spaceName={process.env.REACT_APP_SPACE_NAME}
+      threadName="dtok_main_chat_thread"
+      box={this.state.box}
+      ethereum={window.ethereum}
+      currentUserAddr={
+        this.state.accounts ? this.state.accounts[0] : null
+        }
+      currentUser3BoxProfile={this.state.threeBoxProfile}
+      popupChat={true}
+      />)}
       </Router>
     );
   }
