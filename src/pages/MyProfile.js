@@ -25,14 +25,20 @@ class AppCard extends Component {
     this.props.space.unsubscribeThread(this.props.postId)
   }
   async componentDidMount() {
-    if (this.props.postId !== "memberSince" && this.props.postId !== "proof_did" && this.props.postId !== "name"&&this.props.postId!=="isImage") {
-      this.setState({ con: JSON.parse(this.props.postcontent) })
-      const base="https://dtok.on.fleek.co/#/share/"
-      const shareurl=base+this.props.postId
-      this.setState({shareUrl:shareurl})
-      this.setState({ show: true })
-
+    console.log(this.props.postId)
+    try {
+      if (this.props.postId !== "memberSince" && this.props.postId !== "proof_did" && this.props.postId !== "name"&&this.props.postId!=="isImage"&&this.props.postId!="thread-/orbitdb/zdpuAszmNQXNpkFR14mMV8Fr55CxL5yLXJQhkiTwG7Vm5HTX2/3box.thread.dtok-mainmnnn.application_list") {
+        this.setState({ con: JSON.parse(this.props.postcontent) })
+        const base="https://dtok.on.fleek.co/#/share/"
+        const shareurl=base+this.props.postId
+        this.setState({shareUrl:shareurl})
+        this.setState({ show: true })
+  
+      }
+    } catch (error) {
+      
     }
+   
   }
   render() {
 

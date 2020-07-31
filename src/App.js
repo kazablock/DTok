@@ -57,6 +57,13 @@ export default class App extends Component {
     this.setState({ thread }, ()=>(this.getAppsThread()));
   }
   async getAppsThread() {
+    // const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
+    // const space=this.state.space
+    // const thread = await space.joinThread("application_list", {
+    //   firstModerator: rach,
+    //   members: false
+    // });
+    // this.setState({ thread }, ()=>(this.getAppsThread()));
     if (!this.state.thread) {
       console.error("apps thread not in react state");
       return;
