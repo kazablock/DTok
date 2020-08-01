@@ -24,6 +24,7 @@ export default class AddApp extends Component {
           {this.props.thread && <AppForm savePost={this.savePost} usersAddress={
                  this.props.usersAddress
                 } box={this.props.box} space={this.props.space}
+                redirecturl={this.props.redirecturl}
                 
                 />}
         </div>

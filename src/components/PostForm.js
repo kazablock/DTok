@@ -22,19 +22,12 @@ export default class AppForm extends Component {
     this.setState(Object.assign({ [event.target.name]: event.target.value }));
   };
 
-  // checkType=(file)=>{
-    
-  // }
+  
   handleChange2 = event => {
 
     const file = event.target.files[0];
     console.log(file.type.split("/").includes("image"))
-    // this.checkType(file)
-    // if(file.type.split("/").includes("image"))
-    // {
-    //   console.log("hi")
-    //   this.setState({"image":"true"})
-    // }
+    
    
     
     console.log(file, file.name)
@@ -152,8 +145,8 @@ export default class AppForm extends Component {
 
               </textarea>
               <div className="form-group">
-                <label htmlFor="uploadFile">Add to your post</label>
-                <input type="file" name="uploadFile" accept="image/*,video/*" className="form-control-file" onChange={this.handleChange2} />
+                <label htmlFor="uploadFile">Add Image/Audio/Video to your post</label>
+                <input type="file" name="uploadFile" accept="image/*,video/*,audio/*" className="form-control-file" onChange={this.handleChange2} />
               </div>
 
 
@@ -163,7 +156,7 @@ export default class AppForm extends Component {
             <input type="submit" value="Post" className="btn btn-primary btn-block" />
           </form>
         )}
-        {this.state.submitted && <Redirect to="/" />}
+        {this.state.submitted && <Redirect to={this.props.redirecturl?this.props.redirecturl:"/"} />}
         
       </div>
 

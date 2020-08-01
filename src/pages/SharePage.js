@@ -14,13 +14,38 @@ export default class SharePage extends Component {
     state={
         show:false,
     };
+    async componentWillUnmount()
+    {
+      await this.props.space.unsubscribeThread(this.props.gid)
+
+
+    }
     async componentDidMount() {
         
         try {
             console.log(this.props)
-            // const shareurl=""
-        const base = "https://dtok.on.fleek.co/#/share/"
-        this.props.posts.map((post,i)=>{
+            let posts=null
+            let base=""
+            
+            if(!this.props.posts)
+            {
+              const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
+              const thread = await this.props.space.joinThread(this.props.gid, {
+                  firstModerator: rach,
+                  members: false
+                });
+              posts = await thread.getPosts();
+              base="https://dtok.on.fleek.co/#/groups"+this.props.gid+"/";
+            }else
+            {
+              base = "https://dtok.on.fleek.co/#/share/"
+              posts=this.props.posts
+
+            }
+                // this.setState({ thread }, ()=>(this.getAppsThread()));}
+        // const base = "https://dtok.on.fleek.co/#/share/"
+          posts.map((post,i)=>{
+            console.log(post)
           if(post.message.name==this.props.id)
           {
            const shareurl= base + this.props.id
@@ -31,19 +56,12 @@ export default class SharePage extends Component {
           else{
             console.log(post.message.name)
           }
-          
+        
 
         })
+
         
-      //  const conil= await this.props.space.public.get(this.props.id)
-        
-       
-        // this.setState({ shareUrl: shareurl })
-        
-        // this.setState({content : JSON.parse(conil)})
-        // console.log(JSON.parse(conil).createdBy)
-        // console.log(this.state.content.appImage)
-        // console.log(conil.createdBy)
+    
         
        
         } 
@@ -52,9 +70,11 @@ export default class SharePage extends Component {
             console.log(error)
             console.log(await this.props.space.public.get(this.props.id))
         }
-      
+      }
+    
+    
 
-        }
+        
     render() {
         
       return (

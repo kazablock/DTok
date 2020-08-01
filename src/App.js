@@ -5,6 +5,9 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navi from "./components/Navi";
 import { HashLoader } from "react-spinners";
+import Groups from "./pages/AllGroups";
+// import NewGroupForm from "./components/NewGroupForm"
+import GroupsPage from "./pages/Groups"
 
 import Home from "./pages/Home";
 import AddApp from "./pages/AddPost";
@@ -116,7 +119,20 @@ export default class App extends Component {
               {!this.state.accounts && <h1>Login with metamask</h1>}
             </Route>
             
+            <Route path="/allgroups">
+                  {this.state.space &&this.state.accounts&&(
+                <Groups
+                // getAppsThread={this.getAppsThread.bind(this)}
+                // thread={this.state.thread}
+                usersAddress={
+                  this.state.accounts ? this.state.accounts[0] : null
+                  }
+                box={this.state.box}
+                space={this.state.space}
+                threeBoxProfile={this.state.threeBoxProfile}
 
+                />)}
+            </Route>
            
             <Route path='/share/:id' render={({match}) => (
             this.state.posts?
@@ -153,9 +169,37 @@ export default class App extends Component {
           </div>
            )
             }/>
-             
+              <Route path="/groups/:gid/:pid?" render={({match}) => (
+            this.state.space&&this.state.accounts?match.params.pid?<SharePage box={this.state.box}
+            space={this.state.space}
+            id={match.params.pid}
+            gid ={match.params.gid}
+            usersAddress={
+              this.state.accounts ? this.state.accounts[0] : null
+              }/>:
+            <div style={{ background: "#f0f2f5",justifyContent:"center",textAlign:"center" }}>
+            <GroupsPage id={match.params.gid}
+  
+                // posts={this.state.posts}
+                accounts={this.state.accounts}
+                space={this.state.space}
+                box={this.state.box}
+                // getAppsThread={this.getAppsThread}
+                usersAddress={
+                  this.state.accounts ? this.state.accounts[0] : null
+                }             
+              />
+              
+              </div>:
+         
+           
+           <div style={{ width: "60px", margin: "auto" }}>
+           <HashLoader color={"blue"} />
+         </div>)}
+         />
+
           
-            <Route path="/">
+            <Route path="/" >
             <div style={{ background: "#f0f2f5",display:"flex",justifyContent:"center" }}>
               <Home
                 posts={this.state.posts}

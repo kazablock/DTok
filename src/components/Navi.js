@@ -20,7 +20,8 @@ export default class Navi extends Component {
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto"></Nav>
           <Nav>
-            <NavLink to={this.state.url} style={{color:"#000000",fontWeight:'bold',marginRight:'5px'}}>Profile</NavLink>
+            <NavLink to={this.state.url} style={{color:"#000000",fontWeight:'bold'}}>Profile</NavLink>
+            <NavLink to="/allgroups" style={{color:"#000000",fontWeight:'bold',marginLeft:'9px',marginRight:'9px'}}>Groups</NavLink>
             <NavLink to="/add-post" style={{color:"#000000",fontWeight:'bold'}}>+Add Post</NavLink>
             {/* <Nav.Link style={{color:"#000000",fontWeight:'bold'}}  href="/profile">Profile</Nav.Link>
             <Nav.Link style={{color:"#000000",fontWeight:'bold'}} eventKey={2} href="/add-post">

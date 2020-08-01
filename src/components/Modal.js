@@ -1,8 +1,7 @@
 import { Modal, Button } from "react-bootstrap";
 import React, { Component } from "react";
 import CommentBox from "3box-comments-react";
-// import { SPACE_NAME } from "../Constants";
-// import Like from "./Like";
+
 
 export default class Example extends Component {
   state = {
