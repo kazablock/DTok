@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ProfileHover from "profile-hover";
 // import { HashLoader } from "react-spinners";
 import Modal from "./../components/Modal";
-import Like from "./../components/Like";
+import Like from "./Likee";
 import { Dropdown, DropdownButton } from 'react-bootstrap'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ReactPlayer from 'react-player/lazy';

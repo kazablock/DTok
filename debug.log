@@ -858,3 +858,6 @@
 [0802/095822.400:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0802/095822.401:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0802/095822.401:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0802/112444.728:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0802/112444.744:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0802/112444.746:ERROR:crash_report_database_win.cc(469)] failed to stat report

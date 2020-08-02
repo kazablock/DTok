@@ -159,6 +159,7 @@ export default class App extends Component {
             <MyProfile id={match.params.address}
             box={this.state.box}
             space={this.state.space}
+            threeBoxProfile={this.state.threeBoxProfile}
             usersAddress={
               this.state.accounts ? this.state.accounts[0] : null
               }

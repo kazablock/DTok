@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Box from "3box";
 import { HashLoader } from 'react-spinners';
-import Like from './../components/Like';
+import Like from '../components/Likee';
 // import AppCard from './../components/Appcard'
 
 toast.configure()
@@ -122,6 +122,7 @@ export default class MyProfile extends Component {
     if((this.props.id).toLowerCase()===this.props.usersAddress)
     {
       console.log(this.props.id)
+      console.log(this.props.threeBoxProfile)
       const p = await this.props.space.public.all()
       this.setState({owner:true})
       this.setState({ selfposts: p })
@@ -164,9 +165,9 @@ export default class MyProfile extends Component {
             {this.state.hideEdit && (
               <div>
                 <h2>{this.props.threeBoxProfile.name}</h2>
-                <img src={this.props.threeBoxProfile.image.contentUrl['/']} />
+                {/* <img src={this.props.threeBoxProfile.image.contentUrl['/']} /> */}
                 <p>{this.props.threeBoxProfile.description}</p>
-                <p>{this.props.threeBoxProfile.emoji}</p>
+                {/* <p>{this.props.threeBoxProfile.emoji}</p> */}
                 <button onClick={() => (this.setState({ hideEdit: false }))}>edit</button>
 
               </div>

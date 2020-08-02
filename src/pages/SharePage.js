@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import ProfileHover from "profile-hover";
 import 'react-toastify/dist/ReactToastify.css';
 
-import Like from './../components/Like';
+import Like from '../components/Likee';
 
 toast.configure()
 export default class SharePage extends Component {
