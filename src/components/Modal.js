@@ -24,8 +24,9 @@ export default class Example extends Component {
 
         <Modal show={this.state.show} onHide={this.state.handleClose} size="lg">
           <Modal.Header closeButton>
-            <Modal.Title className="text-justify text-center">{this.props.app.name}</Modal.Title>
-            
+            {/* <Modal.Title className="text-center" style={{wordWrap: "break-word"}}>{this.props.app.name}</Modal.Title> */}
+            <pre className="text-justify font-weight-bold text-center">{this.props.app.name}</pre>
+  
           </Modal.Header>
          
           <Modal.Body>{this.props.app.description}

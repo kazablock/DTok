@@ -156,7 +156,7 @@ export default class AppForm extends Component {
             <input type="submit" value="Post" className="btn btn-primary btn-block" />
           </form>
         )}
-        {this.state.submitted && <Redirect to={this.props.redirecturl?this.props.redirecturl:"/"} />}
+        {this.state.submitted &&!this.props.redirecturl&& <Redirect to="/" />}
         
       </div>
 

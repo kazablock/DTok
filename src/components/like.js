@@ -1,52 +1,44 @@
 import React, { Component } from "react";
-// import { SPACE_NAME } from "../Constants";
-import Box from "3box";
+
 import {FaRegHeart} from "react-icons/fa";
+
 import {FaHeart} from "react-icons/fa";
 export default class Like extends Component {
   state={
-    liketoggle:false
+    liked:false
   }
   async componentDidMount()
   {
-  // const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
-  // const thread = await space.joinThread(this.props.name, {
-  //   firstModerator: rach,
-  //   members: false
-  // });
-  // this.setState({ thread }, ()=>(this.getAppsThread()));
-  // }
-  // async getAppsThread() {
-   
-  //   if (!this.state.thread) {
-  //     console.error("apps thread not in react state");
-  //     return;
-  //   }
+  
 
-  //   const likes = await this.state.thread.getPosts();
-  //   this.setState({likes});
+    const l=await this.props.space.public.get(this.props.likeid+"like")
+    if(!l)
+    {
+      await this.props.space.public.set(this.props.likeid+"like","false")
 
-  //   await this.state.thread.onUpdate(async()=> {
-  //     const likes = await this.state.thread.getPosts({limit:1});
-  //     this.setState({likes});
-  //   })
-  // const id=this.props.likeid+"like"
-  // const profile = await Box.getProfile(this.props.address)
-  // const likes=profile.id
-
-
+    }
+    if(l=="true")
+    {
+      this.setState({liked:true})
+    }
+    this.setState({show:true})
   }
     render() {
-      const likehandle = () => {
+      const likehandle = async () => {
         
+        await this.props.space.public.set(this.props.likeid+"like",(!this.state.liked).toString())
+        this.setState({liked:!this.state.liked})
 
 
       }
       return (
         <>
-           <button className="btn btn-light" onClick={likehandle}> <FaRegHeart color="red" /></button>
-      <p className="font-weight-light">{this.state.likes}</p>
+          {this.state.show&&!this.state.liked&&(<button className="btn btn-light" onClick={likehandle}> <FaRegHeart color="red" /></button>) }
+          {this.state.show&&this.state.liked&&(<button className="btn btn-light" onClick={likehandle}> <FaHeart color="red" /></button>)}
+      {/* // <p className="font-weight-light">{this.state.likes}</p> */}
+        
 
+         
 
         </>
       );

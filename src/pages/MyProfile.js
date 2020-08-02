@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Box from "3box";
 import { HashLoader } from 'react-spinners';
+import Like from './../components/Like';
 // import AppCard from './../components/Appcard'
 
 toast.configure()
@@ -85,7 +86,11 @@ class AppCard extends Component {
 
 
 
-
+              <span className="card-title h-100">
+              <Like 
+                  likeid={this.props.postId}
+                  space={this.props.space}
+                  />
               <CommentBox
                 spaceName={process.env.REACT_APP_SPACE_NAME}
                 threadName={this.props.postId}
@@ -96,6 +101,7 @@ class AppCard extends Component {
                 adminEthAddr={"0xa1465130f57bC31E517A439db0364270A3513FA0"}
                 style={{ width: "100%" }}
               />
+              </span>
             </div>
 
 

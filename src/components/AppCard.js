@@ -94,6 +94,7 @@ export default class AppCard extends Component {
                     
                   <Like address={this.props.post.message.account}
                   likeid={this.props.post.message.name}
+                  space={this.props.space}
                   />
                   {/* <button className="btn btn-light" onClick={like}> <FaRegHeart color="red" /></button> */}
   

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import ProfileHover from "profile-hover";
 import 'react-toastify/dist/ReactToastify.css';
 
-
+import Like from './../components/Like';
 
 toast.configure()
 export default class SharePage extends Component {
@@ -113,7 +113,11 @@ export default class SharePage extends Component {
               <pre className="text-justify text-center">{this.state.content.message.description}</pre>
 
 
-
+             
+              <Like 
+                  likeid={this.props.id}
+                  space={this.props.space}
+                  />
 
               <CommentBox
                 spaceName={process.env.REACT_APP_SPACE_NAME}
@@ -125,6 +129,7 @@ export default class SharePage extends Component {
                 adminEthAddr={"0xa1465130f57bC31E517A439db0364270A3513FA0"}
                 style={{ width: "100%" }}
               />
+            
             </div>
 
 
