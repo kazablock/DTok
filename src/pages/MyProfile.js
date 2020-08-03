@@ -115,25 +115,16 @@ export default class MyProfile extends Component {
   state = {
     hideEdit: false,
     owner:false,
-    img:false,
-    cover:false
+    
     
   }
 
   async componentDidMount() {
     try {
       const p=await Box.getProfile(this.props.id)
-      console.log(p.name)
+      console.log(p)
       this.setState({pro:p})
-      if(p.coverPhoto[0].contentUrl)
-      {
-        this.setState({cover:true})
-
-      }
-      if(p.image[0].contentUrl)
-      {
-        this.setState({img:true})
-      }
+     
     if((this.props.id).toLowerCase()===this.props.usersAddress)
     {
       // console.log(this.props.id)
@@ -187,7 +178,7 @@ export default class MyProfile extends Component {
           
 
              {this.state.selfposts&&(<div><div className="card mx-auto my-4 shadow" style={{
-  backgroundImage: "url(" + this.state.cover?"https://gateway.temporal.cloud/ipfs/"+this.state.pro.coverPhoto[0].contentUrl['/']:"https://via.placeholder.com/468*60" + ")",
+  backgroundImage: "url(" + this.state.pro.coverPhoto?"https://gateway.temporal.cloud/ipfs/"+this.state.pro.coverPhoto[0].contentUrl['/']:"https://via.placeholder.com/468*60" + ")",
   backgroundPosition: 'center',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
@@ -196,7 +187,7 @@ export default class MyProfile extends Component {
               {/* {this.state.pro.name} */}
               {/* <img className="card-img-top" style={{width:"50%"}} src={"https://gateway.temporal.cloud/ipfs/"+this.state.pro.coverPhoto[0].contentUrl['/']} alt="Card image cap"/> */}
               <div className="container">
-              <img className="rounded-circle float-left my-2" style={{width:"25%"}} src={this.state.img?"https://gateway.temporal.cloud/ipfs/"+this.state.pro.image[0].contentUrl['/']:"https://via.placeholder.com/150"} alt="Card image cap"/>
+              <img className="rounded-circle float-left my-2" style={{width:"25%"}} src={this.state.pro.image?"https://gateway.temporal.cloud/ipfs/"+this.state.pro.image[0].contentUrl['/']:"https://via.placeholder.com/150"} alt="Card image cap"/>
 
               </div>
               
