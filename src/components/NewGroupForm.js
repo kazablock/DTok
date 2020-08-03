@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { HashLoader } from "react-spinners";
 import {Redirect} from 'react-router-dom';
-import fleekStorage from '@fleekhq/fleek-storage-js';
+import fleekStorage from '@fleekhq/fleek-storage-js'
+import {FaAsterisk} from 'react-icons/fa'
 
 
 export default class NewGroupForm extends Component {
@@ -105,7 +106,7 @@ export default class NewGroupForm extends Component {
 
               </textarea>
               <div className="form-group">
-                <label htmlFor="uploadFile">Add Group Logo</label>
+                <label htmlFor="uploadFile">Add Group Logo<FaAsterisk color="red"/></label>
                 <input type="file" name="uploadFile" accept="image/*" className="form-control-file" onChange={this.handleChange2} />
               </div>
 

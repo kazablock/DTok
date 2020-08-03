@@ -6,6 +6,7 @@ import sha256 from 'crypto-js/sha256';
 import Hex from 'crypto-js/enc-hex';
 import { HashLoader } from "react-spinners";
 import {Redirect} from 'react-router-dom'
+import {FaAsterisk} from 'react-icons/fa'
 
 
 // import ReactPlayer from 'react-player/lazy';
@@ -145,7 +146,7 @@ export default class AppForm extends Component {
 
               </textarea>
               <div className="form-group">
-                <label htmlFor="uploadFile">Add Image/Audio/Video to your post</label>
+                <label htmlFor="uploadFile">Add Image/Audio/Video to your post<FaAsterisk color="red"/></label>
                 <input type="file" name="uploadFile" accept="image/*,video/*,audio/*" className="form-control-file" onChange={this.handleChange2} />
               </div>
 

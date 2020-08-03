@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import {NavLink} from 'react-router-dom'
+import {NavLink,Redirect} from 'react-router-dom'
 
 export default class Navi extends Component {
-  state={show:false,}
+  state={show:false,loggedout:false}
   async componentDidMount() {
     this.setState({url:"/profile/"+this.props.usersAddress})
     this.setState({show:true})
@@ -25,10 +25,11 @@ export default class Navi extends Component {
             <NavLink to={this.state.url} style={{color:"#000000",fontWeight:'bold',marginRight:'9px'}}>Profile</NavLink>
             <NavLink to="/allgroups" style={{color:"#000000",fontWeight:'bold',marginRight:'9px'}}>Groups</NavLink>
             <NavLink to="/add-post" style={{color:"#000000",fontWeight:'bold',marginRight:'9px'}}>+Add Post</NavLink>
-            <a style={{color:"#000000",fontWeight:'bold'}} onClick={async()=>await this.props.box.logout().then(()=>console.log("loggedout"))}>Logout</a>
+            {/* <a style={{color:"#000000",fontWeight:'bold'}} onClick={async()=>await this.props.box.logout().then(()=>this.setState({loggedout:true}))}>Logout</a> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>)}
+      {/* {this.state.loggedout&&<a to="https://twitter.com/sai_kaza"/>} */}
 
 </>
     )
