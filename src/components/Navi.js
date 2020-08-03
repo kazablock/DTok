@@ -10,7 +10,9 @@ export default class Navi extends Component {
 
 
   }
+ 
   render() {
+    
     return (
       <>
 
@@ -20,13 +22,10 @@ export default class Navi extends Component {
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto"></Nav>
           <Nav>
-            <NavLink to={this.state.url} style={{color:"#000000",fontWeight:'bold'}}>Profile</NavLink>
-            <NavLink to="/allgroups" style={{color:"#000000",fontWeight:'bold',marginLeft:'9px',marginRight:'9px'}}>Groups</NavLink>
-            <NavLink to="/add-post" style={{color:"#000000",fontWeight:'bold'}}>+Add Post</NavLink>
-            {/* <Nav.Link style={{color:"#000000",fontWeight:'bold'}}  href="/profile">Profile</Nav.Link>
-            <Nav.Link style={{color:"#000000",fontWeight:'bold'}} eventKey={2} href="/add-post">
-              +Add Post
-      </Nav.Link> */}
+            <NavLink to={this.state.url} style={{color:"#000000",fontWeight:'bold',marginRight:'9px'}}>Profile</NavLink>
+            <NavLink to="/allgroups" style={{color:"#000000",fontWeight:'bold',marginRight:'9px'}}>Groups</NavLink>
+            <NavLink to="/add-post" style={{color:"#000000",fontWeight:'bold',marginRight:'9px'}}>+Add Post</NavLink>
+            <a style={{color:"#000000",fontWeight:'bold'}} onClick={async()=>await this.props.box.logout().then(()=>console.log("loggedout"))}>Logout</a>
           </Nav>
         </Navbar.Collapse>
       </Navbar>)}

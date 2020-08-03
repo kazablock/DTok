@@ -58,6 +58,7 @@ export default class App extends Component {
       members: false
     });
     this.setState({ thread }, ()=>(this.getAppsThread()));
+   
   }
   async getAppsThread() {
     // const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
@@ -91,11 +92,12 @@ export default class App extends Component {
       <Router>
         <div>
         
-        {this.state.accounts && (
+        {this.state.accounts &&this.state.box&& (
           <Navi 
           usersAddress={
             this.state.accounts ? this.state.accounts[0] : null
             }
+            box={this.state.box}
           />)}
            
           <Switch>
@@ -132,6 +134,9 @@ export default class App extends Component {
                 threeBoxProfile={this.state.threeBoxProfile}
 
                 />)}
+                {!this.state.space&&(<div style={{ width: "60px", margin: "auto" }}>
+            <HashLoader color={"blue"} />
+          </div>)}
             </Route>
            
             <Route path='/share/:id' render={({match}) => (
@@ -201,7 +206,12 @@ export default class App extends Component {
 
           
             <Route path="/" >
-            <div style={{ background: "#f0f2f5",display:"flex",justifyContent:"center" }}>
+              
+            <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+         background: "#f0f2f5" }}>
               <Home
                 posts={this.state.posts}
                 space={this.state.space}

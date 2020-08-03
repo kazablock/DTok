@@ -3,49 +3,61 @@ import AppForm from '../components/NewGroupForm';
 import { HashLoader } from "react-spinners";
 import {NavLink} from 'react-router-dom'
 class GroupCard extends Component {
+    state={
+        followed:false,
+       
+    }
     async componentDidMount()
     {
 
         console.log(this.props)
+        
+       const followed=await this.props.space.public.get(this.props.post.message.name+"follow")
+       if(!followed)
+       {
+        await this.props.space.public.set(this.props.post.message.name+"follow","false")
+       }
+       if(followed=="true")
+       {
+           this.setState({followed:true})
+       }
+       
     }
     render() {
-        // const url="/groups/"+this.props.post.message.name
+
+      const followhandle=async()=>{
+        await this.props.space.public.set(this.props.post.message.name+"follow",(!this.state.followed).toString())
+        this.setState({followed:!this.state.followed})
+
+      }
+   
         return (
             <>
-                {/* <a href className="btn btn-primary float-right">Goto</a> */}
-
-                {/* <AppForm thread={this.props.thread}      
-             
-             usersAddress={
-                this.props.usersAddress
-               }
-               /> */}
-
-                <div className="card w-100 my-4 shadow" style={{ borderRadius: "4%", background: "#ffffff" }}>
-
+                
+                <div className="card w-100 my-4 shadow" style={{ width:"75%", borderRadius: "4%", background: "#ffffff" }}>
+                
                     {this.props.post.message.account && (
-                        //     <div className="card-title">
-                        //         <img className="card-img-top rounded-circle"
-                        //     src={
-                        //         this.props.post.message.Image
-                        //           ? this.props.post.message.Image
-                        //           : "https://via.placeholder.com/200"
-                        //       }
-                        //       />
-                        // </div>
+                        
                         <div className="container my-3">
                             {/* <h2>Bootstrap Horizontal Card</h2> */}
-                            <hr />
+                           
                             <div className="card" >
-                                <div className="row no-gutters">
+                                <div className="row">
+                                   
                                     <div className="col-sm-5">
-                                        <img className="card-img" src={this.props.post.message.Image} alt="Dtok" />
+                                        <img className="card-img float-left" style={{width:"70%"}} src={this.props.post.message.Image} alt="Dtok" />
                                     </div>
                                     <div className="col-sm-7">
+
                                         <div className="card-body">
+                                        {this.state.followed&&<button className="btn btn-warning float-right" onClick={followhandle}>
+                                   Unfollow</button>}
+                                   {!this.state.followed&&<button className="btn btn-success float-right" onClick={followhandle}>
+                                   Follow</button>}
+
                                             <h5 className="card-title">{this.props.post.message.name}</h5>
                                             <p className="card-text">{this.props.post.message.description}</p>
-                                            <NavLink to={"/groups/"+this.props.post.message.name} className="btn btn-primary">Goto</NavLink>
+                                            <NavLink to={"/groups/"+this.props.post.message.name} className="btn btn-dark">Goto➽</NavLink>
                                             {/* <a href={"/groups/"+this.props.post.message.name} className="btn btn-primary">Goto</a> */}
                                         </div>
                                     </div>
@@ -75,7 +87,8 @@ class GroupCard extends Component {
 }
 
 export default class Groups extends Component {
-    state={noposts:false}
+    state={noposts:false,
+    show:false}
 
     async componentDidMount() {
         const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
@@ -85,7 +98,7 @@ export default class Groups extends Component {
         });
         this.setState({ thread }, () => (this.getAppsThread()));
         this.setState({show:true})
-
+        
     }
     async getAppsThread() {
 
@@ -108,6 +121,7 @@ export default class Groups extends Component {
             this.setState({ posts });
             console.log(posts)
         })
+       
     }
 
 
@@ -115,20 +129,22 @@ export default class Groups extends Component {
 
         return (
             <>
+          
+            {!this.state.show && (
+                            
+                            <div style={{ width: "60px", margin: "auto" }}>
+                                <HashLoader color={"blue"} />
+                            </div>
+                        )}
             {(this.state.noposts) && (
           
           <h5 className="brand-font" style={{ fontSize: "5rem" }}>Please Create Your First Group!</h5>
          
        )}
             
-                <div className="container" style={{ textAlign: "center" }} >
+              {this.state.show&&  (<div className="container" style={{ textAlign: "center" }} >
                     <div className="row" style={{ margin: 'auto' }}>
-                        {!this.state.show && (
-                            
-                            <div style={{ width: "60px", margin: "auto" }}>
-                                <HashLoader color={"blue"} />
-                            </div>
-                        )}
+                        
                         <div className="container">
                          <AppForm thread={this.state.thread}      
              
@@ -158,7 +174,7 @@ export default class Groups extends Component {
                         </div>
                     </div>
                 </div>
-
+        )}
 
             </>
 

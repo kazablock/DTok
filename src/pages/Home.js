@@ -7,7 +7,9 @@ import AppCard from './../components/AppCard'
 
 
 export default class Home extends Component {
+ 
   render() {
+    
     return (
      
       <div className="container" style={{ textAlign: "center" }} >
@@ -16,7 +18,7 @@ export default class Home extends Component {
           DTok
         </h1>
         <p>The Decentralised Social Network.</p>
-        <div className="row" style={{ margin: 'auto' }}>
+        <div className="mx-auto" style={{ margin: 'auto' }}>
           {(!this.props.posts || this.props.posts.length < 1) && (
             <div style={{ width: "60px", margin: "auto" }}>
               <HashLoader color={"blue"} />

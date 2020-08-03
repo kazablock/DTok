@@ -34,9 +34,7 @@ export default class AppCard extends Component {
       console.log(this.props.post.message.appImage)
     }
     render() {
-      const like = () => {
-  
-      }
+      
       return (
         <>
   

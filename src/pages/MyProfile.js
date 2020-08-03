@@ -26,7 +26,7 @@ class AppCard extends Component {
     this.props.space.unsubscribeThread(this.props.postId)
   }
   async componentDidMount() {
-    console.log(this.props.postId)
+    // console.log(this.props.postId)
     try {
       if (this.props.postId !== "memberSince" && this.props.postId !== "proof_did" && this.props.postId !== "name"&&this.props.postId!=="isImage"&&this.props.postId!="thread-/orbitdb/zdpuAszmNQXNpkFR14mMV8Fr55CxL5yLXJQhkiTwG7Vm5HTX2/3box.thread.dtok-mainmnnn.application_list") {
         this.setState({ con: JSON.parse(this.props.postcontent) })
@@ -114,35 +114,36 @@ class AppCard extends Component {
 export default class MyProfile extends Component {
   state = {
     hideEdit: false,
-    owner:false
+    owner:false,
+    
   }
 
   async componentDidMount() {
-    
+    try {
+      const p=await Box.getProfile(this.props.id)
+      console.log(p.name)
+      this.setState({pro:p})
     if((this.props.id).toLowerCase()===this.props.usersAddress)
     {
-      console.log(this.props.id)
-      console.log(this.props.threeBoxProfile)
+      // console.log(this.props.id)
+      // console.log(this.props.threeBoxProfile)
       const p = await this.props.space.public.all()
       this.setState({owner:true})
       this.setState({ selfposts: p })
       
     }else{
-      console.log(this.props.usersAddress)
-      console.log(this.props.id)
-      
-      const p=await Box.getProfile(this.props.id)
+      // console.log(this.props.usersAddress)
+      // console.log(this.props.id)
       this.setState({ selfposts: p })
     }
     
+      
+    } catch (error) {
+     console.log(error) 
+    }
     
-    // Object.keys(this.state.selfposts).map((post, i) => {
-
-
-    // )}
-    // Object.keys(p).map((a, b) => {
-    //   console.log(p[a]);
-    // })
+    
+   
   }
 
 
@@ -153,7 +154,7 @@ export default class MyProfile extends Component {
         
         
         {this.state.owner&& ( <div className="container flex" style={{ margin: 'auto' }}>
-         <h1 style={{textAlign : "center"}}>Edit your 3Box Profile</h1>
+         <h1 style={{textAlign : "center"}}>Edit your Profile</h1>
 
             {!this.state.hideEdit && <EditProfile
               box={this.props.box}
@@ -164,11 +165,8 @@ export default class MyProfile extends Component {
             />}
             {this.state.hideEdit && (
               <div>
-                <h2>{this.props.threeBoxProfile.name}</h2>
-                {/* <img src={this.props.threeBoxProfile.image.contentUrl['/']} /> */}
-                <p>{this.props.threeBoxProfile.description}</p>
-                {/* <p>{this.props.threeBoxProfile.emoji}</p> */}
-                <button onClick={() => (this.setState({ hideEdit: false }))}>edit</button>
+                
+                <button className="btn-rounded float-right" onClick={() => (this.setState({ hideEdit: false }))}>edit</button>
 
               </div>
             )}
@@ -177,7 +175,33 @@ export default class MyProfile extends Component {
 
           
 
+             {this.state.selfposts&&(<div><div className="card mx-auto my-4 shadow" style={{
+  backgroundImage: "url(" + this.state.pro.coverPhoto[0].contentUrl['/']?"https://gateway.temporal.cloud/ipfs/"+this.state.pro.coverPhoto[0].contentUrl['/']:"https://via.placeholder.com/468*60" + ")",
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+ width:"75%",
+  borderRadius: "4%"  }}>
+              {/* {this.state.pro.name} */}
+              {/* <img className="card-img-top" style={{width:"50%"}} src={"https://gateway.temporal.cloud/ipfs/"+this.state.pro.coverPhoto[0].contentUrl['/']} alt="Card image cap"/> */}
+              <div className="container">
+              <img className="rounded-circle float-left my-2" style={{width:"25%"}} src={this.state.pro.image[0].contentUrl['/']?"https://gateway.temporal.cloud/ipfs/"+this.state.pro.image[0].contentUrl['/']:"https://via.placeholder.com/150"} alt="Card image cap"/>
 
+              </div>
+              
+
+              <div className="card-body">
+              
+
+              </div>
+              
+              </div>
+              <h5 className="card-title">
+              {this.state.pro.name}
+            </h5>
+            <p className="card-text">{this.state.pro.description}</p>
+            </div>)
+            }
           <h1 style={{textAlign : "center",margin: 'auto'}}>My Posts</h1>
           <div className="container">
             {this.state.selfposts &&
