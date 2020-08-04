@@ -94,25 +94,32 @@ export default class AppForm extends Component {
           isImage:this.state.isimage
         });
 
+        this.props.savePost2({
+          name: this.state.name,
+          appImage: this.state.appImage,
+          description: this.state.description,
+          isImage:this.state.isimage
 
+        })
 
       });
+      this.setState({ submitting: false })
       // console.log(uploadedFile)
-      const tempjson = {
-        description: this.state.description,
-        appImage: this.state.appImage,
-        isImage:this.state.isimage
+      // const tempjson = {
+      //   description: this.state.description,
+      //   appImage: this.state.appImage,
+      //   isImage:this.state.isimage
 
-      }
-      const tempjson2={
-        description: this.state.description,
-        appImage: this.state.appImage,
-        isImage:this.state.isimage,
-        createdBy:this.props.usersAddress
+      // }
+      // const tempjson2={
+      //   description: this.state.description,
+      //   appImage: this.state.appImage,
+      //   isImage:this.state.isimage,
+      //   createdBy:this.props.usersAddress
 
-      }
-      await this.props.box.public.set(this.state.name, JSON.stringify(tempjson));
-      await this.props.space.public.set(this.state.name, JSON.stringify(tempjson2)).then(() => this.setState({ submitting: false }));
+      // }
+      // await this.props.box.public.set(this.state.name, JSON.stringify(tempjson));
+      // await this.props.space.public.set(this.state.name, JSON.stringify(tempjson2)).then(() => this.setState({ submitting: false }));
     } catch (error) {
       console.log(error)
     }

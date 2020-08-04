@@ -1,15 +1,6 @@
 import React, { Component } from "react";
-import CommentBox from "3box-comments-react";
-import {Dropdown,DropdownButton} from 'react-bootstrap'
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import ReactPlayer from 'react-player/lazy';
-import { toast } from 'react-toastify';
-import ProfileHover from "profile-hover";
-import 'react-toastify/dist/ReactToastify.css';
+import AppCard from './../components/AppCard'
 
-import Like from '../components/Likee';
-
-toast.configure()
 export default class SharePage extends Component {
     state={
         show:false,
@@ -35,10 +26,10 @@ export default class SharePage extends Component {
                   members: false
                 });
               posts = await thread.getPosts();
-              base="https://dtok.on.fleek.co/#/groups"+this.props.gid+"/";
+              // base="https://dtok.on.fleek.co/#/groups"+this.props.gid+"/";
             }else
             {
-              base = "https://dtok.on.fleek.co/#/share/"
+              // base = "https://dtok.on.fleek.co/#/share/"
               posts=this.props.posts
 
             }
@@ -48,15 +39,15 @@ export default class SharePage extends Component {
             console.log(post)
           if(post.message.name==this.props.id)
           {
-           const shareurl= base + this.props.id
+          //  const shareurl= base + this.props.id
             this.setState({content:post})
-            this.setState({ shareUrl: shareurl })
+            // this.setState({ shareUrl: shareurl })
             this.setState({ show: true })
           }
           else{
             console.log(post.message.name)
           }
-        
+       
 
         })
 
@@ -68,7 +59,7 @@ export default class SharePage extends Component {
         catch (error) {
             // console.log(params)
             console.log(error)
-            console.log(await this.props.space.public.get(this.props.id))
+            // console.log(await this.props.space.public.get(this.props.id))
         }
       }
     
@@ -79,62 +70,20 @@ export default class SharePage extends Component {
         
       return (
           <>
-          <div className="card col-sm-5 col-md-5 shadow mx-2 my-5 py-4" style={{ borderRadius: "4%", background: "#ffffff" }} >
-          {(this.state.show) && (<div >
-          <span className="my-3">
-          <ProfileHover
-                  address={this.state.content.message.account}
-                  style={{ width: "100%" }}
-                  showName={true}
-                />
-          <DropdownButton size="sm" className="float-right my-3"  id="dropdown-item-button" title="More">
-  
-  
-  <CopyToClipboard text={this.state.shareUrl?this.state.shareUrl:""}
-          onCopy={() => {
-            toast.dark("Link Copied to clipboard!",{position:toast.POSITION.BOTTOM_LEFT})}}>
-            <Dropdown.Item as="button">Share</Dropdown.Item>
-            
-         
-        </CopyToClipboard>
-  
-</DropdownButton>
-</span>
+        
 
-            {/* <div style={{ marginBottom: "10px" }}></div> */}
-
-            {this.state.content.message.isImage==="true" &&   (<img className="card-img-top"
-              src={this.state.content.message.appImage}
-            />)}
-
-            <div className="card-body">
-            <div className="embed-responsive embed-responsive-4by3">
-            {this.state.content.message.isImage==="false"&&(<ReactPlayer url={this.state.content.message.appImage} controls={true} />)}</div>
-              <pre className="text-justify text-center">{this.state.content.message.description}</pre>
-
-
-             
-              <Like 
-                  likeid={this.props.id}
+{this.state.show&&(<AppCard
+                  post={this.state.content}
+                
+                  // threeBox={this.props.threeBox}
+                  gid={this.props.gid}
                   space={this.props.space}
-                  />
-
-              <CommentBox
-                spaceName={process.env.REACT_APP_SPACE_NAME}
-                threadName={this.props.id}
-                box={this.props.box}
-                currentUserAddr={this.props.usersAddress}
-                useHovers={true}
-
-                adminEthAddr={"0xB45De892584c55f07d7377fB02Ee1A49364CbBa1"}
-                style={{ width: "100%" }}
-              />
-            
-            </div>
+                  box={this.props.box}
+                  usersAddress={this.props.usersAddress}
+                   />)}
 
 
-          </div>)}
-        </div>
+
       </>)
 
 

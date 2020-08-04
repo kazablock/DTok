@@ -21,13 +21,7 @@ export default class GroupsPage extends Component {
           this.setState({show:true})
         }
     async getAppsThread() {
-          // const rach = "0xB45De892584c55f07d7377fB02Ee1A49364CbBa1";
-          // const space=this.state.space
-          // const thread = await space.joinThread("application_list", {
-          //   firstModerator: rach,
-          //   members: false
-          // });
-          // this.setState({ thread }, ()=>(this.getAppsThread()));
+          
           if (!this.state.thread) {
             console.error("apps thread not in react state");
             return;
