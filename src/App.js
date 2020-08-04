@@ -24,7 +24,8 @@ const getThreeBox = async address => {
 
 export default class App extends Component {
   state = {
-    needToAWeb3Browser: false
+    needToAWeb3Browser: false,
+    
   };
   async getAddressFromMetaMask() {
     if (typeof window.ethereum == "undefined") {
@@ -45,7 +46,7 @@ export default class App extends Component {
       const threeBoxProfile = await getThreeBox(this.state.accounts[0]);
       this.setState({ threeBoxProfile });
     }
-    const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
+    const rach = "0xB45De892584c55f07d7377fB02Ee1A49364CbBa1";
     const box = await Box.openBox(this.state.accounts[0], window.ethereum);
     this.setState({ box });
     const space = await this.state.box.openSpace(process.env.REACT_APP_SPACE_NAME);
@@ -53,7 +54,7 @@ export default class App extends Component {
     this.setState({ space });
     
 
-    const thread = await space.joinThread("application_list", {
+    const thread = await space.joinThread("dtok_main_page", {
       firstModerator: rach,
       members: false
     });
@@ -61,7 +62,7 @@ export default class App extends Component {
    
   }
   async getAppsThread() {
-    // const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
+    // const rach = "0xB45De892584c55f07d7377fB02Ee1A49364CbBa1";
     // const space=this.state.space
     // const thread = await space.joinThread("application_list", {
     //   firstModerator: rach,
@@ -75,6 +76,7 @@ export default class App extends Component {
 
     const posts = await this.state.thread.getPosts();
     this.setState({posts});
+   
 
     await this.state.thread.onUpdate(async()=> {
       const posts = await this.state.thread.getPosts();
@@ -220,7 +222,7 @@ export default class App extends Component {
                 usersAddress={
                   this.state.accounts ? this.state.accounts[0] : null
                 }
-                
+                // noposts={this.state.noposts}
 
               />
               </div>

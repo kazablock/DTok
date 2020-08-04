@@ -98,7 +98,7 @@ class AppCard extends Component {
                 currentUserAddr={this.props.usersAddress}
                 useHovers={true}
 
-                adminEthAddr={"0xa1465130f57bC31E517A439db0364270A3513FA0"}
+                adminEthAddr={"0xB45De892584c55f07d7377fB02Ee1A49364CbBa1"}
                 style={{ width: "100%" }}
               />
               </span>

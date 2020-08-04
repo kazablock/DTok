@@ -91,8 +91,8 @@ export default class Groups extends Component {
     show:false}
 
     async componentDidMount() {
-        const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
-        const thread = await this.props.space.joinThread("dtok_groupss_list", {
+        const rach = "0xB45De892584c55f07d7377fB02Ee1A49364CbBa1";
+        const thread = await this.props.space.joinThread("dtok_groups_list", {
             firstModerator: rach,
             members: false
         });

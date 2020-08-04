@@ -12,7 +12,7 @@ export default class GroupsPage extends Component {
         await this.props.space.unsubscribeThread(this.props.id)
       }
     async componentDidMount(){
-        const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
+        const rach = "0xB45De892584c55f07d7377fB02Ee1A49364CbBa1";
         const thread = await this.props.space.joinThread(this.props.id, {
             firstModerator: rach,
             members: false
@@ -21,7 +21,7 @@ export default class GroupsPage extends Component {
           this.setState({show:true})
         }
     async getAppsThread() {
-          // const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
+          // const rach = "0xB45De892584c55f07d7377fB02Ee1A49364CbBa1";
           // const space=this.state.space
           // const thread = await space.joinThread("application_list", {
           //   firstModerator: rach,

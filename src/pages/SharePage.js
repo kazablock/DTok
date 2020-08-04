@@ -29,7 +29,7 @@ export default class SharePage extends Component {
             
             if(!this.props.posts)
             {
-              const rach = "0xa1465130f57bC31E517A439db0364270A3513FA0";
+              const rach = "0xB45De892584c55f07d7377fB02Ee1A49364CbBa1";
               const thread = await this.props.space.joinThread(this.props.gid, {
                   firstModerator: rach,
                   members: false
@@ -126,7 +126,7 @@ export default class SharePage extends Component {
                 currentUserAddr={this.props.usersAddress}
                 useHovers={true}
 
-                adminEthAddr={"0xa1465130f57bC31E517A439db0364270A3513FA0"}
+                adminEthAddr={"0xB45De892584c55f07d7377fB02Ee1A49364CbBa1"}
                 style={{ width: "100%" }}
               />
             

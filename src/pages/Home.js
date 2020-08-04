@@ -18,6 +18,7 @@ export default class Home extends Component {
           DTok
         </h1>
         <p>The Decentralised Social Network.</p>
+        {this.props.noposts=="true"&&(<p>Please add first post!</p>)}
         <div className="mx-auto" style={{ margin: 'auto' }}>
           {(!this.props.posts || this.props.posts.length < 1) && (
             <div style={{ width: "60px", margin: "auto" }}>
