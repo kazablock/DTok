@@ -100,7 +100,7 @@ export default class MyProfile extends Component {
           
 
              {this.state.selfposts&&this.state.show&&(<div><div className="card mx-auto my-4 shadow" style={{
-  backgroundImage: "url(" + this.state.pro.coverPhoto?"https://gateway.temporal.cloud/ipfs/"+this.state.pro.coverPhoto[0].contentUrl['/']:"https://via.placeholder.com/468*60" + ")",
+  // backgroundImage: "url(" + this.state.pro.coverPhoto?"https://gateway.temporal.cloud/ipfs/"+this.state.pro.coverPhoto[0].contentUrl['/']:"https://via.placeholder.com/468*60" + ")",
   backgroundPosition: 'center',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
